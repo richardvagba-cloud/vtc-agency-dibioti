@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /sous-agents.html
+Disallow: /connexion-requise.html
+
+Sitemap: https://vtc-agency-dibioti.netlify.app/sitemap.xml

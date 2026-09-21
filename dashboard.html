@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Tableau de bord de suivi personnel — VTC.AGENCY</title>
+<meta name="description" content="Enregistrez vos sessions (durée, points) et suivez votre progression, sauvegardé sur votre appareil.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vtc-agency-dibioti.netlify.app/dashboard.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Tableau de bord de suivi personnel — VTC.AGENCY">
+<meta property="og:description" content="Enregistrez vos sessions (durée, points) et suivez votre progression, sauvegardé sur votre appareil.">
+<meta property="og:url" content="https://vtc-agency-dibioti.netlify.app/dashboard.html">
+<meta property="og:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tableau de bord de suivi personnel — VTC.AGENCY">
+<meta name="twitter:description" content="Enregistrez vos sessions (durée, points) et suivez votre progression, sauvegardé sur votre appareil.">
+<meta name="twitter:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --paper:#FBF5EE; --ink:#241B2F; --coral:#E1543F; --coral-deep:#B93F2E; --coral-hover:#9C3527;
+  --gold:#8C6A1D; --teal:#2F6E68; --teal-bg:#E7F1EF; --muted:#6E6379; --line:#E4D9CC; --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;}
+.wrap{max-width:640px;margin:0 auto;padding:0 24px 56px;}
+.live-strip{display:block;background:var(--coral-deep);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500;text-decoration:none;}
+.live-strip:hover{background:var(--coral-hover);}
+.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulseLive 1.4s infinite;}
+@keyframes pulseLive{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.hero{padding:48px 0 20px;}
+.eyebrow{font-size:12px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin-bottom:14px;}
+.hero h1{font-size:28px;margin-bottom:10px;}
+.hero p{color:var(--muted);font-size:14px;}
+.note{background:var(--teal-bg);color:var(--teal);border-radius:12px;padding:12px 16px;font-size:13px;margin:18px 0 28px;}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+.field input{border:1px solid var(--line);background:var(--paper);padding:10px 12px;border-radius:10px;font-size:14px;color:var(--ink);}
+.field input:focus{outline:2px solid var(--coral);outline-offset:1px;}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:12px 20px;border-radius:22px;font-family:'Inter';font-size:14px;font-weight:600;cursor:pointer;width:100%;}
+.btn-primary:hover{background:var(--coral-hover);}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:24px;}
+.stat{background:var(--card);padding:18px 14px;text-align:center;}
+.stat .num{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
+.stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+.entry-list{display:flex;flex-direction:column;gap:0;}
+.entry{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px;}
+.entry:last-child{border-bottom:none;}
+.entry .date{color:var(--muted);font-size:12px;}
+.entry .del{background:none;border:none;color:var(--coral-deep);cursor:pointer;font-size:12px;text-decoration:underline;}
+.empty{color:var(--muted);font-size:13px;padding:20px 0;text-align:center;}
+.back{display:inline-block;margin-top:20px;font-size:13px;color:var(--muted);text-decoration:none;}
+@media (max-width:480px){ .form-row{grid-template-columns:1fr;} .stats-row{grid-template-columns:1fr 1fr;} }
+
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-links a.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+  <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<a class="live-strip" href="https://vp.poppolive.com/7N6Cf6" target="_blank" rel="noopener"><span class="dot"></span>Viens me rejoindre sur le live</a>
+<script src="/search-index.js"></script>
+<script src="/search-widget.js"></script>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Outil · Espace hôte</div>
+    <h1>Tableau de bord de suivi personnel</h1>
+    <p>Notez vos sessions pour suivre votre progression réelle, semaine après semaine.</p>
+  </div>
+
+  <div class="note">Enregistré uniquement sur cet appareil et ce navigateur — personne d'autre n'y a accès, y compris l'agence.</div>
+
+  <div class="stats-row" id="statsRow">
+    <div class="stat"><div class="num" id="statSessions">0</div><div class="lbl">Sessions</div></div>
+    <div class="stat"><div class="num" id="statMinutes">0</div><div class="lbl">Minutes</div></div>
+    <div class="stat"><div class="num" id="statPoints">0</div><div class="lbl">Points cumulés</div></div>
+  </div>
+
+  <div class="form-card">
+    <h3 style="font-size:16px;margin-bottom:16px;">Ajouter une session</h3>
+    <div class="form-row">
+      <div class="field"><label>Date</label><input type="date" id="fDate"></div>
+      <div class="field"><label>Durée (minutes)</label><input type="number" id="fMinutes" min="0" placeholder="30"></div>
+    </div>
+    <div class="form-row">
+      <div class="field"><label>Points reçus</label><input type="number" id="fPoints" min="0" placeholder="0"></div>
+      <div class="field"><label>Note (optionnel)</label><input type="text" id="fNote" placeholder="ex: bon créneau"></div>
+    </div>
+    <button class="btn-primary" onclick="addEntry()">Enregistrer la session</button>
+  </div>
+
+  <h3 style="font-size:16px;margin-bottom:12px;">Historique</h3>
+  <div class="entry-list" id="entryList"></div>
+
+  <a class="back" href="/agence.html">← Retour à l'espace hôte</a><a class="back" href="/blog.html" style="margin-left:16px;">Blog</a>
+</div>
+
+<script>
+const STORAGE_KEY = 'vtcagency_suivi_hote';
+
+function loadEntries(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch(e){ return []; }
+}
+function saveEntries(entries){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); }
+  catch(e){}
+}
+function render(){
+  const entries = loadEntries().sort((a,b)=> b.date.localeCompare(a.date));
+  const list = document.getElementById('entryList');
+  if(entries.length === 0){
+    list.innerHTML = '<div class="empty">Aucune session enregistrée pour l\'instant.</div>';
+  } else {
+    list.innerHTML = entries.map((e,i)=>`
+      <div class="entry">
+        <div>
+          <div>${e.minutes} min · ${e.points} pts${e.note ? ' · ' + escapeHtml(e.note) : ''}</div>
+          <div class="date">${e.date}</div>
+        </div>
+        <button class="del" onclick="removeEntry(${entries.length - 1 - entries.slice().reverse().indexOf(e)})">Supprimer</button>
+      </div>
+    `).join('');
+  }
+  const totalMinutes = entries.reduce((s,e)=> s + (parseInt(e.minutes)||0), 0);
+  const totalPoints = entries.reduce((s,e)=> s + (parseInt(e.points)||0), 0);
+  document.getElementById('statSessions').textContent = entries.length;
+  document.getElementById('statMinutes').textContent = totalMinutes;
+  document.getElementById('statPoints').textContent = totalPoints.toLocaleString('fr-FR');
+}
+function escapeHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+function addEntry(){
+  const date = document.getElementById('fDate').value || new Date().toISOString().slice(0,10);
+  const minutes = document.getElementById('fMinutes').value || 0;
+  const points = document.getElementById('fPoints').value || 0;
+  const note = document.getElementById('fNote').value || '';
+  const entries = loadEntries();
+  entries.push({date, minutes, points, note});
+  saveEntries(entries);
+  document.getElementById('fMinutes').value = '';
+  document.getElementById('fPoints').value = '';
+  document.getElementById('fNote').value = '';
+  render();
+}
+function removeEntry(indexFromOldestFirst){
+  const entries = loadEntries();
+  entries.splice(indexFromOldestFirst, 1);
+  saveEntries(entries);
+  render();
+}
+document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+render();
+</script>
+</body>
+</html>

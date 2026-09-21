@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Connexion requise — VTC.AGENCY</title>
+<meta name="description" content="Cette page est réservée aux comptes VTC.AGENCY. Connectez-vous ou créez un compte pour y accéder.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://vtc-agency-dibioti.netlify.app/connexion-requise.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --paper:#FBF5EE; --ink:#241B2F; --coral:#E1543F; --coral-deep:#B93F2E; --coral-hover:#9C3527;
+  --gold:#8C6A1D; --teal:#2F6E68; --teal-bg:#E7F1EF; --muted:#6E6379; --line:#E4D9CC; --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+.wrap{max-width:480px;margin:0 auto;padding:32px;text-align:center;}
+.lock{font-family:'Fraunces',serif;font-weight:700;font-size:44px;color:var(--coral-deep);margin-bottom:8px;}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:26px;margin-bottom:12px;}
+p{color:var(--muted);font-size:15px;margin-bottom:28px;}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:13px 24px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;}
+.btn-primary:hover{background:var(--coral-hover);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink);padding:13px 24px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:var(--ink);}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<div style="flex:1;display:flex;align-items:center;justify-content:center;">
+<div class="wrap">
+  <div class="lock">🔒</div>
+  <h1>Cette page est réservée.</h1>
+  <p>L'espace sous-agents et le tableau de bord demandent un compte VTC.AGENCY. Connectez-vous, ou créez un compte en quelques secondes (email + mot de passe).</p>
+  <div class="actions">
+    <button class="btn-primary" id="open-auth-btn">Se connecter / Créer un compte</button>
+    <a class="btn-ghost" href="/agence.html">Retour à l'agence</a>
+  </div>
+</div>
+</div>
+
+<script>
+document.getElementById('open-auth-btn').addEventListener('click', function(){
+  if (window.openAuthModal) window.openAuthModal();
+});
+</script>
+
+</body>
+</html>

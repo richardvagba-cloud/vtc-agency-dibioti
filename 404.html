@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Page introuvable — VTC.AGENCY</title>
+<meta name="description" content="Cette page n'existe pas ou plus. Retrouvez l'agence, l'espace hôte ou lancez une recherche.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --paper:#FBF5EE; --ink:#241B2F; --coral:#E1543F; --coral-deep:#B93F2E; --coral-hover:#9C3527;
+  --gold:#8C6A1D; --teal:#2F6E68; --teal-bg:#E7F1EF; --muted:#6E6379; --line:#E4D9CC; --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
+.wrap{max-width:520px;padding:32px;text-align:center;}
+.code{font-family:'Fraunces',serif;font-weight:700;font-size:88px;color:var(--coral-deep);line-height:1;margin-bottom:8px;}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:26px;margin-bottom:12px;}
+p{color:var(--muted);font-size:15px;margin-bottom:28px;}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:13px 24px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:var(--coral-hover);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink);padding:13px 24px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:var(--ink);}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-links a.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+  <span id="nav-auth"></span>
+  </div>
+</nav>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;"><div class="wrap">
+  <div class="code">404</div>
+  <h1>Cette page n'existe pas — ou plus.</h1>
+  <p>Le lien est peut-être obsolète. Une recherche va apparaître ci-dessous, ou repartez de l'agence.</p>
+  <div class="actions">
+    <a class="btn-primary" href="/agence.html">Aller à l'agence</a>
+    <a class="btn-ghost" href="/index.html">Page d'accueil</a>
+    <a class="btn-ghost" href="/blog.html">Blog</a>
+  </div>
+</div></div>
+<script src="/search-index.js"></script>
+<script src="/search-widget.js"></script>
+</body>
+</html>

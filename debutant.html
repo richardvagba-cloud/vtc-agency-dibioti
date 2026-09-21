@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Dibioti Academy par VTC.AGENCY</title>
+<meta name="description" content="Parcours guidé, lexique des termes, contact rapide pour lever les blocages du premier pas sur Poppo Live.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vtc-agency-dibioti.netlify.app/debutant.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Dibioti Academy — Pour les débutants">
+<meta property="og:description" content="Parcours guidé, lexique des termes, contact rapide pour lever les blocages du premier pas sur Poppo Live.">
+<meta property="og:url" content="https://vtc-agency-dibioti.netlify.app/debutant.html">
+<meta property="og:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dibioti Academy — Pour les débutants">
+<meta name="twitter:description" content="Parcours guidé, lexique des termes, contact rapide pour lever les blocages du premier pas sur Poppo Live.">
+<meta name="twitter:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --paper:#FBF5EE;
+  --ink:#241B2F;
+  --coral:#E1543F;
+  --coral-deep:#B93F2E; --coral-hover:#9C3527;
+  --gold:#8C6A1D;
+  --teal:#2F6E68;
+  --teal-bg:#E7F1EF;
+  --muted:#6E6379;
+  --line:#E4D9CC;
+  --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.18;color:var(--ink);}
+.mono{font-family:'IBM Plex Mono',monospace;}
+button{font-family:'Inter',sans-serif;cursor:pointer;}
+.wrap{max-width:820px;margin:0 auto;padding:0 28px;}
+
+/* top bar - minimal, no vitrine stats */
+.topbar{padding:20px 0;border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:820px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;}
+.brand{font-family:'Fraunces',serif;font-weight:700;font-size:18px;}
+.brand span{color:var(--coral);}
+.brand small{display:block;font-family:'Inter';font-weight:400;font-size:11px;color:var(--muted);margin-top:2px;}
+.lex-btn{background:var(--teal-bg);color:var(--teal);border:none;padding:9px 16px;border-radius:20px;font-size:13px;font-weight:500;}
+
+/* hero: the single question */
+.hero{padding:64px 0 48px;text-align:center;}
+.hero h1{font-size:32px;max-width:520px;margin:0 auto 12px;}
+.hero p{color:var(--muted);font-size:15px;max-width:440px;margin:0 auto 36px;}
+
+.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.choice-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 18px;text-align:center;transition:border-color .15s, transform .1s;}
+.choice-card:hover{border-color:var(--coral);}
+.choice-card.selected{border-color:var(--coral);border-width:2px;background:#FFF6F3;}
+.choice-card .icon{font-family:'Fraunces',serif;font-size:26px;color:var(--coral);margin-bottom:10px;}
+.choice-card h3{font-size:15px;margin-bottom:6px;}
+.choice-card p{font-size:12px;color:var(--muted);}
+
+/* answer panels */
+.answer{display:none;margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px;}
+.answer.show{display:block;}
+.answer .eyebrow{font-size:12px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-bottom:10px;}
+.answer h2{font-size:24px;margin-bottom:18px;}
+
+/* mini quiz */
+.quiz-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.quiz-opt{background:var(--paper);border:1px solid var(--line);padding:10px 16px;border-radius:22px;font-size:13px;}
+.quiz-opt.picked{background:var(--ink);color:#fff;border-color:var(--ink);}
+.quiz-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+
+/* 3-step path */
+.path{display:flex;flex-direction:column;gap:0;margin-top:8px;display:none;}
+.path.show{display:flex;}
+.path-step{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);}
+.path-step:last-child{border-bottom:none;}
+.path-step .n{font-family:'Fraunces',serif;font-size:24px;color:var(--gold);font-weight:700;flex-shrink:0;width:36px;}
+.path-step h3{font-size:15px;margin-bottom:4px;}
+.path-step p{font-size:13px;color:var(--muted);}
+
+/* first goal callout */
+.goal-box{background:var(--teal-bg);border-radius:14px;padding:18px 20px;margin-top:22px;font-size:13px;color:var(--teal);}
+.goal-box b{font-weight:600;}
+
+/* reassurance list */
+.blocker-list{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+.blocker{display:flex;gap:14px;align-items:flex-start;}
+.blocker .dot{width:8px;height:8px;border-radius:50%;background:var(--coral);margin-top:7px;flex-shrink:0;}
+.blocker h4{font-size:14px;margin-bottom:3px;}
+.blocker p{font-size:13px;color:var(--muted);}
+
+/* quick faq */
+.qfaq{display:flex;flex-direction:column;}
+.qfaq details{border-bottom:1px solid var(--line);padding:14px 0;}
+.qfaq summary{font-size:14px;font-weight:500;cursor:pointer;list-style:none;}
+.qfaq summary::-webkit-details-marker{display:none;}
+.qfaq p{font-size:13px;color:var(--muted);margin-top:8px;}
+
+.cta-row{margin-top:24px;display:flex;gap:12px;}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:13px 22px;border-radius:24px;font-size:14px;font-weight:500;}
+.btn-primary:hover{background:var(--coral-hover);}
+.btn-ghost{background:transparent;border:1px solid var(--line);padding:13px 22px;border-radius:24px;font-size:14px;font-weight:500;color:var(--ink);}
+
+/* floating contact */
+.fab{position:fixed;bottom:22px;right:22px;background:var(--ink);color:#fff;border:none;padding:14px 20px;border-radius:30px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(36,27,47,0.25);z-index:60;}
+.fab .pulse{width:7px;height:7px;border-radius:50%;background:#3DDC97;}
+
+/* modal (shared for lexique + contact) */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(36,27,47,0.5);z-index:100;align-items:flex-end;justify-content:center;}
+.modal-bg.show{display:flex;}
+.modal{background:var(--paper);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:28px;max-height:80vh;overflow-y:auto;}
+@media (min-width:640px){
+  .modal-bg{align-items:center;}
+  .modal{border-radius:20px;}
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.modal-head h3{font-size:18px;}
+.modal-close{background:none;border:none;font-size:20px;color:var(--muted);}
+.term{padding:12px 0;border-bottom:1px solid var(--line);}
+.term:last-child{border-bottom:none;}
+.term .word{font-weight:600;font-size:14px;}
+.term p{font-size:13px;color:var(--muted);margin-top:3px;}
+.modal .form-field{margin-bottom:12px;}
+.modal .form-field label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px;}
+.modal .form-field input,.modal .form-field textarea{width:100%;border:1px solid var(--line);background:#fff;padding:11px 13px;border-radius:10px;font-size:14px;font-family:'Inter';}
+.modal-confirm{display:none;background:var(--teal-bg);color:var(--teal);border-radius:10px;padding:14px;font-size:13px;margin-top:12px;}
+.modal-confirm.show{display:block;}
+
+footer{padding:36px 0 90px;text-align:center;}
+footer p{font-size:12px;color:var(--muted);}
+.live-strip{display:block;background:var(--coral-deep);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500;text-decoration:none;}
+.live-strip:hover{background:var(--coral-hover);}
+.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulseLive 1.4s infinite;}
+@keyframes pulseLive{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+@media (max-width:600px){
+  .choice-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:26px;}
+  .fab span.label{display:none;}
+}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-links a.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+  <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Dibioti Academy <span>·</span> par VTC.AGENCY<small>Formation d'abord, streaming ensuite</small></div>
+    <button class="lex-btn" onclick="openModal('lexique')">Lexique</button>
+  </div>
+</div>
+
+<a class="live-strip" href="https://vp.poppolive.com/7N6Cf6" target="_blank" rel="noopener"><span class="dot"></span>Viens me rejoindre sur le live</a>
+<script src="/search-index.js"></script>
+<script src="/search-widget.js"></script>
+
+<div class="wrap hero">
+  <h1>Vous en êtes où ?</h1>
+  <p>Répondez en un clic, on adapte tout de suite ce qu'on vous montre.</p>
+
+  <div class="choice-grid" id="choiceGrid">
+    <div class="choice-card" data-choice="decouvre">
+      <div class="icon">1</div>
+      <h3>Je découvre</h3>
+      <p>Je n'ai jamais commencé, j'aimerais comprendre par où passer.</p>
+    </div>
+    <div class="choice-card" data-choice="arrete">
+      <div class="icon">2</div>
+      <h3>J'ai déjà essayé et arrêté</h3>
+      <p>J'ai un compte mais je n'ai pas continué. Je me demande pourquoi.</p>
+    </div>
+    <div class="choice-card" data-choice="infos">
+      <div class="icon">3</div>
+      <h3>Je veux juste des infos</h3>
+      <p>Pas encore prêt à me lancer, je regarde d'abord.</p>
+    </div>
+  </div>
+
+  <!-- ANSWER 1: découvre -->
+  <div class="answer" id="answer-decouvre">
+    <div class="eyebrow">Pour vous</div>
+    <h2>Deux questions, puis votre parcours.</h2>
+
+    <div class="quiz-label">Combien de temps par semaine ?</div>
+    <div class="quiz-row" data-q="temps">
+      <button class="quiz-opt" data-v="peu">Moins de 5h</button>
+      <button class="quiz-opt" data-v="moyen">5 à 10h</button>
+      <button class="quiz-opt" data-v="beaucoup">Plus de 10h</button>
+    </div>
+
+    <div class="quiz-label">Avez-vous déjà un compte Poppo Live ?</div>
+    <div class="quiz-row" data-q="compte">
+      <button class="quiz-opt" data-v="oui">Oui, déjà créé</button>
+      <button class="quiz-opt" data-v="non">Pas encore</button>
+    </div>
+
+    <div class="path" id="pathResult">
+      <div class="path-step">
+        <div class="n">01</div>
+        <div><h3 id="step1Title">On se parle 10 minutes</h3><p id="step1Text">Un message rapide pour comprendre votre disponibilité réelle, pas un formulaire à rallonge.</p></div>
+      </div>
+      <div class="path-step">
+        <div class="n">02</div>
+        <div><h3>On configure ensemble</h3><p>Vérification de profil et photo de couverture, faites avec vous pour éviter les erreurs qui bloquent 9 débutants sur 10.</p></div>
+      </div>
+      <div class="path-step">
+        <div class="n">03</div>
+        <div><h3>Premier live, petit objectif</h3><p>Pas de promesse de gains. Juste un premier essai court, pour voir comment ça se passe réellement.</p></div>
+      </div>
+    </div>
+
+    <div class="goal-box" id="goalBox" style="display:none;">
+      <b>Votre premier objectif :</b> <span id="goalText">30 minutes de live cette semaine, rien de plus.</span>
+    </div>
+
+    <div class="cta-row" id="ctaDecouvre" style="display:none;">
+      <button class="btn-primary" onclick="openModal('contact')">On se parle maintenant</button>
+      <button class="btn-ghost" onclick="openModal('lexique')">Voir le lexique d'abord</button>
+    </div>
+  </div>
+
+  <!-- ANSWER 2: arrêté -->
+  <div class="answer" id="answer-arrete">
+    <div class="eyebrow">Pour vous</div>
+    <h2>Ce qui fait arrêter la plupart des gens — et comment on le corrige.</h2>
+    <div class="blocker-list">
+      <div class="blocker"><div class="dot"></div><div><h4>Le jargon fait peur</h4><p>Points, paliers, sous-agent : personne n'ose demander. Le lexique en haut de page répond à ça en 30 secondes.</p></div></div>
+      <div class="blocker"><div class="dot"></div><div><h4>Aucune progression visible</h4><p>Sans objectif clair, on décroche vite. On fixe un premier objectif volontairement petit, pas un chiffre de gains irréaliste.</p></div></div>
+      <div class="blocker"><div class="dot"></div><div><h4>Personne à qui poser une question</h4><p>Le bouton en bas de l'écran vous met directement en contact, sans formulaire ni attente.</p></div></div>
+    </div>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="openModal('contact')">Je reprends, avec de l'aide</button>
+      <button class="btn-ghost" onclick="openModal('lexique')">Revoir le lexique</button>
+    </div>
+  </div>
+
+  <!-- ANSWER 3: infos -->
+  <div class="answer" id="answer-infos">
+    <div class="eyebrow">Pour vous</div>
+    <h2>Aucune pression. Voici l'essentiel.</h2>
+    <div class="qfaq">
+      <details open><summary>Est-ce que ça coûte quelque chose de rejoindre ?</summary><p>Non. L'inscription et l'accompagnement sont gratuits. Aucun paiement ne vous sera jamais demandé pour devenir hôte.</p></details>
+      <details><summary>Combien de temps avant de gagner quelque chose ?</summary><p>Le retrait minimum est de 100 000 points, environ 10 dollars. Le rythme dépend entièrement de votre régularité, pas de promesses.</p></details>
+      <details><summary>Je peux juste regarder sans m'engager ?</summary><p>Oui. Le lexique et cette page restent accessibles sans créer de compte ni laisser vos coordonnées.</p></details>
+    </div>
+    <div class="cta-row">
+      <button class="btn-ghost" onclick="openModal('lexique')">Consulter le lexique</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab" onclick="openModal('contact')"><span class="pulse"></span><span class="label">Une question là, maintenant ?</span></button>
+
+<!-- MODAL: lexique -->
+<div class="modal-bg" id="modal-lexique">
+  <div class="modal">
+    <div class="modal-head"><h3>Lexique</h3><button class="modal-close" onclick="closeModal('lexique')">&times;</button></div>
+    <div class="term"><div class="word">Points</div><p>Ce que vous gagnez pendant un live. 10 000 points valent environ 1 dollar.</p></div>
+    <div class="term"><div class="word">Retrait</div><p>L'action de transformer vos points en argent réel. Possible à partir de 100 000 points.</p></div>
+    <div class="term"><div class="word">Agence</div><p>Une équipe qui vous accompagne et touche une petite commission sur vos gains, en échange d'un vrai suivi.</p></div>
+    <div class="term"><div class="word">Sous-agent</div><p>Une personne qui gère elle-même un groupe d'hôtes sous une agence plus grande.</p></div>
+    <div class="term"><div class="word">Palier / niveau</div><p>Votre progression selon votre activité. Plus vous êtes régulier, plus le palier monte.</p></div>
+    <div class="term"><div class="word">Coins</div><p>Ce que les spectateurs achètent pour vous envoyer des cadeaux pendant un live.</p></div>
+  </div>
+</div>
+
+<!-- MODAL: contact -->
+<div class="modal-bg" id="modal-contact">
+  <div class="modal">
+    <div class="modal-head"><h3>On vous répond directement</h3><button class="modal-close" onclick="closeModal('contact')">&times;</button></div>
+    <div class="form-field"><label>Votre prénom</label><input type="text" id="cName"></div>
+    <div class="form-field"><label>WhatsApp ou email</label><input type="text" id="cContact"></div>
+    <div class="form-field"><label>Votre question (facultatif)</label><textarea rows="3" id="cMsg"></textarea></div>
+    <button class="btn-primary" style="width:100%;" onclick="sendContact()">Envoyer</button>
+    <div class="modal-confirm" id="contactConfirm">C'est envoyé. Quelqu'un de l'équipe vous répond directement, sans jamais vous demander de paiement.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Dibioti Academy par VTC.AGENCY · Aucun frais pour rejoindre · Aucun agent officiel ne demande de paiement</p>
+  </div>
+</footer>
+
+<script>
+const quizState = {temps:null, compte:null};
+
+document.querySelectorAll('.choice-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    document.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('selected'));
+    document.querySelectorAll('.answer').forEach(a=>a.classList.remove('show'));
+    card.classList.add('selected');
+    const choice = card.dataset.choice;
+    document.getElementById('answer-'+choice).classList.add('show');
+    document.getElementById('answer-'+choice).scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+});
+
+document.querySelectorAll('.quiz-row').forEach(row=>{
+  row.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      row.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('picked'));
+      opt.classList.add('picked');
+      quizState[row.dataset.q] = opt.dataset.v;
+      updatePath();
+    });
+  });
+});
+
+function updatePath(){
+  if(!quizState.temps || !quizState.compte) return;
+  document.getElementById('pathResult').classList.add('show');
+
+  const step1Title = document.getElementById('step1Title');
+  const step1Text = document.getElementById('step1Text');
+  if(quizState.compte === 'oui'){
+    step1Title.textContent = 'On repart de votre compte existant';
+    step1Text.textContent = "Pas besoin de tout recréer. On vérifie ce qui est déjà en place et on ajuste.";
+  } else {
+    step1Title.textContent = 'On crée votre compte ensemble';
+    step1Text.textContent = "10 minutes suffisent, on vous guide écran par écran.";
+  }
+
+  const goalBox = document.getElementById('goalBox');
+  const goalText = document.getElementById('goalText');
+  goalBox.style.display = 'block';
+  if(quizState.temps === 'peu'){
+    goalText.textContent = '20 minutes de live cette semaine, pas plus. On ajustera ensuite.';
+  } else if(quizState.temps === 'moyen'){
+    goalText.textContent = '3 sessions de 30 minutes cette semaine, à vos horaires.';
+  } else {
+    goalText.textContent = 'Une première semaine régulière, sans viser un chiffre de gains.';
+  }
+
+  document.getElementById('ctaDecouvre').style.display = 'flex';
+}
+
+function openModal(name){
+  document.getElementById('modal-'+name).classList.add('show');
+}
+function closeModal(name){
+  document.getElementById('modal-'+name).classList.remove('show');
+}
+document.querySelectorAll('.modal-bg').forEach(bg=>{
+  bg.addEventListener('click', (e)=>{ if(e.target === bg) bg.classList.remove('show'); });
+});
+function sendContact(){
+  document.getElementById('contactConfirm').classList.add('show');
+}
+</script>
+
+</body>
+</html>

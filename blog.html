@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Blog · Dibioti Academy par VTC.AGENCY</title>
+<meta name="description" content="Ce qu'on entend souvent sur le réseau Poppo Live, expliqué mieux : PK Battles, lexique, Centre de Création, et plus.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vtc-agency-dibioti.netlify.app/blog.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Blog · Dibioti Academy par VTC.AGENCY">
+<meta property="og:description" content="Ce qu'on entend souvent sur le réseau Poppo Live, expliqué mieux : PK Battles, lexique, Centre de Création, et plus.">
+<meta property="og:url" content="https://vtc-agency-dibioti.netlify.app/blog.html">
+<meta property="og:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog · Dibioti Academy par VTC.AGENCY">
+<meta name="twitter:description" content="Ce qu'on entend souvent sur le réseau Poppo Live, expliqué mieux : PK Battles, lexique, Centre de Création, et plus.">
+<meta name="twitter:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --paper:#FBF5EE;
+  --ink:#241B2F;
+  --plum-2:#3A2C46;
+  --coral:#E1543F;
+  --coral-deep:#B93F2E;
+  --coral-hover:#9C3527;
+  --gold:#8C6A1D;
+  --teal:#2F6E68;
+  --teal-bg:#E7F1EF;
+  --muted:#6E6379;
+  --line:#E4D9CC;
+  --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.15;color:var(--ink);}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+section{padding:88px 0;}
+
+/* live strip */
+.live-strip{display:block;background:var(--coral-deep);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500;text-decoration:none;}
+.live-strip:hover{background:var(--coral-hover);}
+.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulseLive 1.4s infinite;}
+@keyframes pulseLive{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a,.nav-links button{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover,.nav-links button:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-links a.active,.nav-links button.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+
+/* Page toggle */
+.page{display:none;}
+.page.active{display:block;}
+
+/* Hero */
+.hero{padding:72px 0 48px;}
+.eyebrow{font-size:13px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin-bottom:18px;}
+.hero h1{font-size:46px;max-width:680px;margin-bottom:22px;}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:560px;}
+
+/* Blog grid */
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:16px;}
+.blog-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;cursor:pointer;transition:border-color .15s;}
+.blog-card:hover{border-color:var(--coral);}
+.blog-card.soon{cursor:default;opacity:0.72;}
+.blog-card.soon:hover{border-color:var(--line);}
+.blog-card .tag{font-size:11px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-bottom:10px;}
+.blog-card h3{font-size:19px;margin-bottom:8px;}
+.blog-card p{font-size:14px;color:var(--muted);}
+.blog-card .status{font-size:12px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:14px;display:block;}
+.blog-card .go{margin-top:14px;font-size:13px;font-weight:500;color:var(--coral-deep);}
+
+/* Article */
+.article-wrap{max-width:680px;margin:0 auto;padding:56px 28px 96px;}
+.back-link{font-size:13px;color:var(--muted);cursor:pointer;margin-bottom:24px;display:inline-block;background:none;border:none;font-family:'Inter';padding:0;}
+.back-link:hover{color:var(--coral-deep);}
+.article-wrap .eyebrow{margin-bottom:14px;}
+.article-wrap h1{font-size:34px;margin-bottom:18px;}
+.article-wrap .meta{font-size:13px;color:var(--muted);margin-bottom:40px;font-family:'IBM Plex Mono',monospace;}
+.article-body h2{font-size:22px;margin-top:36px;margin-bottom:14px;}
+.article-body p{font-size:16px;color:var(--ink);margin-bottom:18px;}
+.article-body ul{margin:0 0 18px 20px;}
+.article-body li{font-size:16px;margin-bottom:8px;}
+.callout{background:var(--teal-bg);border-radius:14px;padding:22px 24px;margin:28px 0;}
+.callout p{color:var(--teal);font-size:15px;margin-bottom:0;}
+
+footer{border-top:1px solid var(--line);padding:48px 0;}
+.footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;max-width:1080px;margin:0 auto;padding:0 32px;}
+.footer-note{font-size:12px;color:var(--muted);margin-top:8px;}
+.footer-note a{color:inherit;}
+
+@media (max-width:720px){
+  .blog-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:32px;}
+  .article-wrap h1{font-size:26px;}
+}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+
+<a class="live-strip" href="https://vp.poppolive.com/7N6Cf6" target="_blank" rel="noopener"><span class="dot"></span>Viens me rejoindre sur le live</a>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html" class="active">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+  <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<script src="/search-index.js"></script>
+<script src="/search-widget.js"></script>
+
+<!-- PAGE: LISTE -->
+<div class="page active" id="page-liste">
+  <div class="wrap hero">
+    <div class="eyebrow">Blog · VTC.AGENCY</div>
+    <h1>Ce qu'on entend souvent sur le réseau, expliqué mieux.</h1>
+    <p class="lead">Des sujets qui circulent chez les hôtes Poppo Live — repris ici avec plus de contexte, d'exemples concrets, et de conseils applicables tout de suite.</p>
+  </div>
+
+  <div class="wrap" style="margin-top:8px;padding-bottom:88px;">
+    <div class="blog-grid">
+      <div class="blog-card" onclick="goTo('article-pk')">
+        <div class="tag">Stratégie live</div>
+        <h3>Les PK Battles — au-delà du duel</h3>
+        <p>Ce que la plupart des hôtes ne comprennent qu'après plusieurs défaites : quand accepter, comment préparer son public, et pourquoi perdre n'est pas grave.</p>
+        <div class="go">Lire l'article &rarr;</div>
+      </div>
+
+      <div class="blog-card soon">
+        <div class="tag">Débuter</div>
+        <h3>Le lexique Poppo décodé</h3>
+        <p>Les abréviations qui bloquent les débutants dans le chat, expliquées avec des exemples réels plutôt qu'un glossaire sec.</p>
+        <span class="status">Bientôt disponible</span>
+      </div>
+
+      <div class="blog-card soon">
+        <div class="tag">Contenu</div>
+        <h3>Le Centre de Création — le sous-utilisé</h3>
+        <p>Pourquoi la plupart des hôtes n'exploitent jamais cette fonctionnalité, et comment poster ta première vidéo cette semaine.</p>
+        <span class="status">Bientôt disponible</span>
+      </div>
+
+      <div class="blog-card soon">
+        <div class="tag">Analyse</div>
+        <h3>Pourquoi certains lives explosent et d'autres stagnent</h3>
+        <p>Trois erreurs concrètes qui vident une salle pleine — observées directement sur des lives de l'agence.</p>
+        <span class="status">Bientôt disponible</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: ARTICLE PK -->
+<div class="page" id="page-article-pk">
+  <div class="article-wrap">
+    <button class="back-link" onclick="goTo('liste')">&larr; Retour au blog</button>
+    <div class="eyebrow">Stratégie live</div>
+    <h1>Les PK Battles — au-delà du duel</h1>
+    <div class="meta">Dibioti Academy · VTC.AGENCY</div>
+
+    <div class="article-body">
+      <p>Sur Poppo Live, dès qu'on parle de PK, on imagine tout de suite un duel : deux hôtes, une barre de score, un gagnant et un perdant. C'est vrai techniquement — mais c'est aussi la façon la plus rapide de mal utiliser cette fonctionnalité quand on débute.</p>
+
+      <h2>Ce qu'est réellement un PK</h2>
+      <p>Un PK battle connecte deux lives en temps réel : les audiences des deux hôtes se retrouvent dans la même salle, et les cadeaux envoyés pendant la durée du battle déterminent le score de chaque côté. À la fin, un camp gagne — mais ce qui compte vraiment pendant ces quelques minutes, c'est l'interaction entre les deux communautés.</p>
+
+      <h2>Quand accepter un PK</h2>
+      <p>Le réflexe du débutant est d'accepter toutes les demandes pour "se faire connaître". C'est rarement une bonne idée. Trois conditions valent la peine d'être vérifiées avant de dire oui :</p>
+      <ul>
+        <li><strong>La taille de l'audience en face</strong> — un PK contre une salle beaucoup plus grande ou beaucoup plus petite déséquilibre l'expérience pour les deux publics.</li>
+        <li><strong>Le moment de la journée</strong> — un PK a besoin d'énergie ; le lancer en fin de session, quand ton audience commence à partir, joue contre toi.</li>
+        <li><strong>L'état de ta salle au moment T</strong> — si ta salle est déjà bien remplie et engagée, un PK peut la booster. Si elle est vide, un PK ne la remplira pas par magie.</li>
+      </ul>
+
+      <h2>Préparer son audience avant de lancer</h2>
+      <p>La différence entre un PK qui engage et un PK qui vide la salle se joue souvent avant même qu'il commence. Annoncer le PK à venir, expliquer brièvement ce qui va se passer pour les nouveaux venus, et donner une raison de rester (encourager l'équipe, viser un palier) transforme un spectateur passif en participant actif.</p>
+
+      <div class="callout">
+        <p>Un PK n'a pas besoin d'être gagné pour être réussi. Un PK perdu mais qui a fait rire, discuter et rester ton audience a rempli son rôle.</p>
+      </div>
+
+      <h2>Comment gérer une défaite</h2>
+      <p>Perdre un PK n'est pas un problème en soi — c'est la réaction qui compte. Les hôtes qui progressent le plus vite sont ceux qui terminent un PK perdu par un moment de connexion avec leur public ("on retente bientôt", un remerciement sincère) plutôt que par un silence gêné ou une sortie précipitée de la salle.</p>
+
+      <p>Le score d'un PK se lit en cadeaux. Ta progression comme hôte se lit ailleurs : dans la régularité de ton audience, semaine après semaine.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+      <div class="footer-note">Agence officielle Poppo Live · ID 44904360</div>
+      <div class="footer-note"><a href="/confidentialite.html">Confidentialité</a> · <a href="/cgu.html">CGU</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>

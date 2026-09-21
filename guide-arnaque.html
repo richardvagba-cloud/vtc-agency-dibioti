@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Reconnaître les tentatives d'arnaque — VTC.AGENCY</title>
+<meta name="description" content="Règle d'or : on ne paie jamais pour travailler. Signaux d'alerte et ce que VTC.AGENCY ne fera jamais.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vtc-agency-dibioti.netlify.app/guide-arnaque.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Reconnaître les tentatives d'arnaque — VTC.AGENCY">
+<meta property="og:description" content="Règle d'or : on ne paie jamais pour travailler. Signaux d'alerte et ce que VTC.AGENCY ne fera jamais.">
+<meta property="og:url" content="https://vtc-agency-dibioti.netlify.app/guide-arnaque.html">
+<meta property="og:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reconnaître les tentatives d'arnaque — VTC.AGENCY">
+<meta name="twitter:description" content="Règle d'or : on ne paie jamais pour travailler. Signaux d'alerte et ce que VTC.AGENCY ne fera jamais.">
+<meta name="twitter:image" content="https://vtc-agency-dibioti.netlify.app/og-image.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+:root{
+  --paper:#FBF5EE; --ink:#241B2F; --coral:#E1543F; --coral-deep:#B93F2E; --coral-hover:#9C3527;
+  --gold:#8C6A1D; --teal:#2F6E68; --teal-bg:#E7F1EF; --muted:#6E6379; --line:#E4D9CC; --card:#FFFFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+.live-strip{display:block;background:var(--coral-deep);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500;text-decoration:none;}
+.live-strip:hover{background:var(--coral-hover);}
+.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulseLive 1.4s infinite;}
+@keyframes pulseLive{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.hero{padding:56px 0 24px;}
+.eyebrow{font-size:12px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1.5px;font-weight:500;margin-bottom:14px;}
+.hero h1{font-size:32px;margin-bottom:14px;}
+.hero p{color:var(--muted);font-size:15px;max-width:520px;}
+.rule-box{background:var(--ink);color:#F0EAE0;border-radius:16px;padding:28px 30px;margin:32px 0;}
+.rule-box .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--coral-deep);color:#fff;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:10px;}
+.rule-box h2{color:#fff;font-size:20px;margin-bottom:8px;}
+.rule-box p{color:#C8BFCF;font-size:14px;}
+.signal-list{display:flex;flex-direction:column;gap:0;margin:24px 0;}
+.signal{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+.signal:last-child{border-bottom:none;}
+.signal .dot{width:8px;height:8px;border-radius:50%;background:var(--coral);margin-top:7px;flex-shrink:0;}
+.signal h4{font-size:15px;margin-bottom:3px;}
+.signal p{font-size:13px;color:var(--muted);}
+.never-list{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px;margin:24px 0;}
+.never-list li{font-size:14px;margin-bottom:10px;padding-left:22px;position:relative;}
+.never-list li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700;}
+.never-list li:last-child{margin-bottom:0;}
+.contact-strip{background:var(--teal);color:#fff;border-radius:16px;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;margin:32px 0 56px;flex-wrap:wrap;}
+.btn-primary{background:#fff;color:var(--teal);border:none;padding:12px 22px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:600;text-decoration:none;}
+.back{display:inline-block;margin:24px 0 0;font-size:13px;color:var(--muted);text-decoration:none;}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
+.logo span{color:var(--coral);}
+.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
+.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
+.nav-links a.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
+.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:var(--coral-hover);}
+</style>
+</head>
+<body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+  <span id="nav-auth"></span>
+  </div>
+</nav>
+
+<a class="live-strip" href="https://vp.poppolive.com/7N6Cf6" target="_blank" rel="noopener"><span class="dot"></span>Viens me rejoindre sur le live</a>
+<script src="/search-index.js"></script>
+<script src="/search-widget.js"></script>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Guide · Sécurité</div>
+    <h1>Reconnaître les tentatives d'arnaque.</h1>
+    <p>Les arnaques qui ciblent les créateurs de contenu et hôtes de live suivent presque toujours le même schéma, quelle que soit la plateforme. Voici comment les repérer avant qu'elles ne vous coûtent quelque chose.</p>
+  </div>
+
+  <div class="rule-box">
+    <div class="tag">Règle d'or</div>
+    <h2>On ne paie jamais pour travailler.</h2>
+    <p>Une agence légitime est rémunérée par une commission sur vos gains — jamais par un paiement que vous lui feriez pour "débloquer" un statut, une formation ou un accès.</p>
+  </div>
+
+  <h2 style="font-size:19px;margin-bottom:4px;">Les signaux qui doivent vous alerter</h2>
+  <div class="signal-list">
+    <div class="signal"><div class="dot"></div><div><h4>Une demande de paiement, quelle que soit sa forme</h4><p>Frais d'inscription, "frais de déblocage", carte-cadeau, virement pour une formation obligatoire — c'est le signal numéro un dans la quasi-totalité des arnaques documentées visant les créateurs de contenu.</p></div></div>
+    <div class="signal"><div class="dot"></div><div><h4>Une urgence artificielle</h4><p>"Vous devez payer ou confirmer immédiatement, sinon vous perdez votre place." La pression temporelle sert à empêcher de réfléchir ou de vérifier.</p></div></div>
+    <div class="signal"><div class="dot"></div><div><h4>Des promesses de gains disproportionnées</h4><p>Des chiffres irréalistes présentés comme garantis, sans lien avec un effort ou une régularité réelle.</p></div></div>
+    <div class="signal"><div class="dot"></div><div><h4>Une communication peu professionnelle</h4><p>Fautes grossières, identité de l'agent impossible à vérifier, contact uniquement par un canal informel jamais mentionné officiellement.</p></div></div>
+    <div class="signal"><div class="dot"></div><div><h4>L'obligation de recruter pour gagner</h4><p>Si l'essentiel de ce qu'on vous promet dépend du recrutement d'autres personnes plutôt que de votre propre activité, c'est un schéma à risque.</p></div></div>
+  </div>
+
+  <h2 style="font-size:19px;margin-bottom:4px;">Ce que VTC.AGENCY ne fera jamais</h2>
+  <div class="never-list">
+    <ul style="list-style:none;">
+      <li>Vous demander un paiement pour rejoindre, être formé, ou "débloquer" un niveau</li>
+      <li>Vous mettre la pression pour décider dans l'urgence</li>
+      <li>Vous contacter en dehors des canaux listés sur ce site</li>
+      <li>Vous garantir un montant de gains précis</li>
+    </ul>
+  </div>
+
+  <div class="contact-strip">
+    <div>
+      <div style="font-weight:600;">Un doute sur un message reçu ?</div>
+      <div style="font-size:13px;opacity:0.9;">Vérifiez directement auprès de l'agence avant de répondre.</div>
+    </div>
+    <a class="btn-primary" href="/agence.html">Contacter l'agence</a>
+  </div>
+
+  <a class="back" href="/agence.html">← Retour à l'espace hôte</a><a class="back" href="/blog.html" style="margin-left:16px;">Blog</a>
+</div>
+</body>
+</html>
