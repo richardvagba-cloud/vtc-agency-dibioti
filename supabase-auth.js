@@ -7,7 +7,7 @@
     document.cookie = COOKIE_NAME + "=" + token + "; path=/; max-age=" + (maxAge || 3600) + "; SameSite=Lax";
   }
   function clearCookie() {
-    document.cookie = COOKIE_NAME + "=; path=/; max-age=0";
+    document.cookie = COOKIE_NAME + "=; max-age=0";
   }
 
   function renderNav(user) {
@@ -77,6 +77,39 @@
     }
   }
 
+  var AUTH_ERROR_MAP = {
+    "invalid login credentials": "Email ou mot de passe incorrect.",
+    "email not confirmed": "Adresse email non confirmée. Vérifie ta boîte mail (et les spams).",
+    "user already registered": "Un compte existe déjà avec cette adresse email.",
+    "signup requires a valid password": "Mot de passe invalide.",
+    "unable to validate email address: invalid format": "Adresse email invalide.",
+    "email rate limit exceeded": "Trop d'emails envoyés. Réessaie dans quelques minutes.",
+    "token has expired or is invalid": "Le code a expiré ou est invalide. Réessaie.",
+    "invalid refresh token: refresh token not found": "Session expirée. Reconnecte-toi.",
+    "mfa factor not found": "Méthode de vérification introuvable. Reconnecte-toi.",
+    "too many requests": "Trop de tentatives. Réessaie dans un instant.",
+    "enrolled factors exceed allowed limit, unenroll to continue": "Trop de méthodes de sécurité enregistrées. Contacte l'agence."
+  };
+
+  function translateAuthError(message) {
+    if (!message) return "Une erreur est survenue. Réessaie.";
+    var m = message.toLowerCase().trim();
+    if (AUTH_ERROR_MAP[m]) return AUTH_ERROR_MAP[m];
+    if (m.indexOf("password should be at least") !== -1) {
+      return "Le mot de passe est trop court (6 caractères minimum).";
+    }
+    if (m.indexOf("for security purposes") !== -1) {
+      return "Trop de tentatives. Merci de patienter quelques secondes avant de réessayer.";
+    }
+    if (m.indexOf("rate limit") !== -1) {
+      return "Trop de tentatives. Réessaie dans quelques minutes.";
+    }
+    if (m.indexOf("network") !== -1 || m.indexOf("fetch") !== -1) {
+      return "Problème de connexion réseau. Vérifie ta connexion et réessaie.";
+    }
+    return "Une erreur est survenue (" + message + "). Réessaie ou contacte l'agence si ça persiste.";
+  }
+
   function eyeIconSVG(open) {
     if (open) {
       return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
@@ -121,8 +154,8 @@
       var password = document.getElementById("sb-password").value;
       if (!email || !password) return showError("Renseigne ton email et ton mot de passe.");
       window.sbClient.auth.signInWithPassword({ email: email, password: password }).then(function (res) {
-        if (res.error) return showError(res.error.message);
-        afterAuth();
+        if (res.error) return showError(translateAuthError(res.error.message));
+        afterAuth(email);
       });
     });
 
@@ -132,9 +165,9 @@
       if (!email || !password) return showError("Renseigne un email et un mot de passe.");
       if (password.length < 6) return showError("Le mot de passe doit faire au moins 6 caractères.");
       window.sbClient.auth.signUp({ email: email, password: password }).then(function (res) {
-        if (res.error) return showError(res.error.message);
+        if (res.error) return showError(translateAuthError(res.error.message));
         if (res.data.session) {
-          afterAuth();
+          afterAuth(email);
         } else {
           viewEl.innerHTML =
             '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:14px;">Vérifie ta boîte mail</div>' +
@@ -144,72 +177,51 @@
     });
   }
 
-  function afterAuth() {
-    var mfa = window.sbClient.auth.mfa;
-    mfa.listFactors().then(function (res) {
-      if (res.error) return showError(res.error.message);
-      var totp = (res.data.totp || []).find(function (f) { return f.status === "verified"; });
-      if (!totp) {
-        renderEnrollStep();
-      } else {
-        mfa.getAuthenticatorAssuranceLevel().then(function (aalRes) {
-          if (aalRes.data && aalRes.data.currentLevel === "aal2") {
-            finishLogin();
-          } else {
-            renderChallengeStep(totp.id);
-          }
-        });
-      }
+  function afterAuth(email) {
+    window.sbClient.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false } }).then(function (res) {
+      if (res.error) return showError(translateAuthError(res.error.message));
+      renderEmailCodeStep(email);
     });
   }
 
-  function renderEnrollStep() {
-    viewEl.innerHTML = '<div style="text-align:center;color:var(--muted,#6E6379);font-size:14px;">Préparation du code de sécurité…</div>';
-    window.sbClient.auth.mfa.enroll({ factorType: "totp" }).then(function (res) {
-      if (res.error) return showError(res.error.message);
-      var factorId = res.data.id;
-      var qr = res.data.totp.qr_code;
-      var secret = res.data.totp.secret;
-      viewEl.innerHTML =
-        '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:10px;">Active la vérification en 2 étapes</div>' +
-        '<div style="color:var(--muted,#6E6379);font-size:13px;margin-bottom:14px;">Obligatoire. Scanne ce code avec Google Authenticator (ou une app équivalente), ou entre la clé manuellement.</div>' +
-        '<div style="text-align:center;margin-bottom:12px;"><img src="' + qr + '" alt="QR code" style="width:160px;height:160px;"></div>' +
-        '<div style="font-family:\'IBM Plex Mono\',monospace;font-size:12px;background:var(--teal-bg,#E7F1EF);padding:8px;border-radius:8px;text-align:center;word-break:break-all;margin-bottom:14px;">' + secret + '</div>' +
-        '<div id="sb-err" style="display:none;background:#FAECE7;color:#B93F2E;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;"></div>' +
-        '<input id="sb-code" type="text" inputmode="numeric" maxlength="6" placeholder="Code à 6 chiffres" style="' + inputStyle() + 'text-align:center;letter-spacing:4px;">' +
-        '<button id="sb-confirm-btn" style="' + btnPrimaryStyle() + '">Confirmer et activer</button>';
-
-      document.getElementById("sb-confirm-btn").addEventListener("click", function () {
-        var code = document.getElementById("sb-code").value.trim();
-        if (!code) return showError("Entre le code affiché sur ton application.");
-        window.sbClient.auth.mfa.challenge({ factorId: factorId }).then(function (chRes) {
-          if (chRes.error) return showError(chRes.error.message);
-          window.sbClient.auth.mfa.verify({ factorId: factorId, challengeId: chRes.data.id, code: code }).then(function (vRes) {
-            if (vRes.error) return showError("Code incorrect, réessaie.");
-            finishLogin();
-          });
-        });
-      });
-    });
-  }
-
-  function renderChallengeStep(factorId) {
+  function renderEmailCodeStep(email, justResent) {
     viewEl.innerHTML =
-      '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:14px;">Code de vérification</div>' +
-      '<div style="color:var(--muted,#6E6379);font-size:13px;margin-bottom:14px;">Entre le code à 6 chiffres généré par ton application d\'authentification.</div>' +
+      '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:10px;">Vérifie ton email</div>' +
+      '<div style="color:var(--muted,#6E6379);font-size:13px;margin-bottom:14px;">On vient d\'envoyer un code à 6 chiffres à <strong>' + email + '</strong>. Il expire après quelques minutes.</div>' +
+      (justResent ? '<div style="background:var(--teal-bg,#E7F1EF);color:var(--teal,#2F6E68);font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;">Nouveau code envoyé.</div>' : '') +
       '<div id="sb-err" style="display:none;background:#FAECE7;color:#B93F2E;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;"></div>' +
       '<input id="sb-code" type="text" inputmode="numeric" maxlength="6" placeholder="Code à 6 chiffres" style="' + inputStyle() + 'text-align:center;letter-spacing:4px;">' +
-      '<button id="sb-confirm-btn" style="' + btnPrimaryStyle() + '">Valider</button>';
+      '<button id="sb-confirm-btn" style="' + btnPrimaryStyle() + '">Valider</button>' +
+      '<button type="button" id="sb-resend-btn" style="' + btnGhostStyle() + '">Renvoyer le code</button>';
 
     document.getElementById("sb-confirm-btn").addEventListener("click", function () {
       var code = document.getElementById("sb-code").value.trim();
-      if (!code) return showError("Entre le code affiché sur ton application.");
-      window.sbClient.auth.mfa.challenge({ factorId: factorId }).then(function (chRes) {
-        if (chRes.error) return showError(chRes.error.message);
-        window.sbClient.auth.mfa.verify({ factorId: factorId, challengeId: chRes.data.id, code: code }).then(function (vRes) {
-          if (vRes.error) return showError("Code incorrect, réessaie.");
-          finishLogin();
-        });
+      if (!code) return showError("Entre le code reçu par email.");
+      window.sbClient.auth.verifyOtp({ email: email, token: code, type: "email" }).then(function (res) {
+        if (res.error) return showError("Code incorrect ou expiré, réessaie.");
+        finishLogin();
+      });
+    });
+
+    var resendBtn = document.getElementById("sb-resend-btn");
+    var seconds = 30;
+    resendBtn.disabled = true;
+    resendBtn.textContent = "Renvoyer le code (" + seconds + "s)";
+    var timer = setInterval(function () {
+      seconds--;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        resendBtn.disabled = false;
+        resendBtn.textContent = "Renvoyer le code";
+      } else {
+        resendBtn.textContent = "Renvoyer le code (" + seconds + "s)";
+      }
+    }, 1000);
+    resendBtn.addEventListener("click", function () {
+      if (resendBtn.disabled) return;
+      window.sbClient.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false } }).then(function (res) {
+        if (res.error) return showError(translateAuthError(res.error.message));
+        renderEmailCodeStep(email, true);
       });
     });
   }
@@ -256,15 +268,8 @@
         renderNav(null);
         return;
       }
-      client.auth.mfa.getAuthenticatorAssuranceLevel().then(function (aalRes) {
-        if (aalRes.data && aalRes.data.currentLevel === "aal2") {
-          setCookie(session.access_token, session.expires_in);
-          renderNav(session.user);
-        } else {
-          clearCookie();
-          renderNav(null);
-        }
-      });
+      setCookie(session.access_token, session.expires_in);
+      renderNav(session.user);
     });
   }
 
