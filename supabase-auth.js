@@ -145,7 +145,7 @@
       passwordFieldHTML("sb-password", "current-password") +
       '<button id="sb-login-btn" style="' + btnPrimaryStyle() + '">Se connecter</button>' +
       '<button id="sb-signup-btn" style="' + btnGhostStyle() + '">Créer un compte</button>' +
-      '<div style="color:var(--muted,#6E6379);font-size:12px;margin-top:14px;text-align:center;">Une vérification en deux étapes (code à 6 chiffres) est requise à chaque connexion.</div>';
+      '<div style="color:var(--muted,#6E6379);font-size:12px;margin-top:14px;text-align:center;">Une vérification en deux étapes (code à 8 chiffres) est requise à chaque connexion.</div>';
 
     wirePasswordToggle("sb-password");
 
@@ -171,7 +171,7 @@
         } else {
           viewEl.innerHTML =
             '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:14px;">Vérifie ta boîte mail</div>' +
-            '<div style="color:var(--muted,#6E6379);font-size:14px;">Compte créé. Confirme ton adresse via l\'email reçu, puis reviens te connecter — la mise en place du code à 6 chiffres se fera à ce moment-là.</div>';
+            '<div style="color:var(--muted,#6E6379);font-size:14px;">Compte créé. Confirme ton adresse via l\'email reçu, puis reviens te connecter — la mise en place du code à 8 chiffres se fera à ce moment-là.</div>';
         }
       });
     });
@@ -187,10 +187,10 @@
   function renderEmailCodeStep(email, justResent) {
     viewEl.innerHTML =
       '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:10px;">Vérifie ton email</div>' +
-      '<div style="color:var(--muted,#6E6379);font-size:13px;margin-bottom:14px;">On vient d\'envoyer un code à 6 chiffres à <strong>' + email + '</strong>. Il expire après quelques minutes.</div>' +
+      '<div style="color:var(--muted,#6E6379);font-size:13px;margin-bottom:14px;">On vient d\'envoyer un code à 8 chiffres à <strong>' + email + '</strong>. Il expire après quelques minutes.</div>' +
       (justResent ? '<div style="background:var(--teal-bg,#E7F1EF);color:var(--teal,#2F6E68);font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;">Nouveau code envoyé.</div>' : '') +
       '<div id="sb-err" style="display:none;background:#FAECE7;color:#B93F2E;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;"></div>' +
-      '<input id="sb-code" type="text" inputmode="numeric" maxlength="6" placeholder="Code à 6 chiffres" style="' + inputStyle() + 'text-align:center;letter-spacing:4px;">' +
+      '<input id="sb-code" type="text" inputmode="numeric" maxlength="8" placeholder="Code à 8 chiffres" style="' + inputStyle() + 'text-align:center;letter-spacing:4px;">' +
       '<button id="sb-confirm-btn" style="' + btnPrimaryStyle() + '">Valider</button>' +
       '<button type="button" id="sb-resend-btn" style="' + btnGhostStyle() + '">Renvoyer le code</button>';
 
