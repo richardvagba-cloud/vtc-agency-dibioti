@@ -4,4 +4,4 @@ Disallow: /dashboard.html
 Disallow: /sous-agents.html
 Disallow: /connexion-requise.html
 
-Sitemap: https://vtc-agency-dibioti.netlify.app/sitemap.xml
+Sitemap: https://www.dibioti.com/sitemap.xml
