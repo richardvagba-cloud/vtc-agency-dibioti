@@ -6,12 +6,16 @@ const SUPABASE_URL = "https://exlzfvatjonglxqsplvr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_lrRP0LYEwPm8C48qmw0Z_w_WrpxbHBm";
 
 export default async (request, context) => {
+  const url = new URL(request.url);
+  const loginUrl = new URL("/connexion-requise.html", request.url);
+  loginUrl.searchParams.set("next", url.pathname);
+
   const cookie = request.headers.get("cookie") || "";
   const match = cookie.match(/sb-access-token=([^;]+)/);
   const token = match ? match[1] : null;
 
   if (!token) {
-    return Response.redirect(new URL("/connexion-requise.html", request.url), 302);
+    return Response.redirect(loginUrl, 302);
   }
 
   try {
@@ -22,10 +26,10 @@ export default async (request, context) => {
       },
     });
     if (!res.ok) {
-      return Response.redirect(new URL("/connexion-requise.html", request.url), 302);
+      return Response.redirect(loginUrl, 302);
     }
   } catch (e) {
-    return Response.redirect(new URL("/connexion-requise.html", request.url), 302);
+    return Response.redirect(loginUrl, 302);
   }
 
   // Token valide : on laisse la page se servir normalement.
