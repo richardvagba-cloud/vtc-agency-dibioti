@@ -77,15 +77,44 @@
     }
   }
 
+  function eyeIconSVG(open) {
+    if (open) {
+      return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+    }
+    return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+  }
+
+  function passwordFieldHTML(id, autocomplete) {
+    return '<div style="position:relative;margin-bottom:10px;">' +
+      '<input id="' + id + '" type="password" placeholder="Mot de passe" autocomplete="' + autocomplete + '" style="' + inputStyle().replace("margin-bottom:10px;", "margin-bottom:0;") + "padding-right:42px;" + '">' +
+      '<button type="button" id="' + id + '-toggle" aria-label="Afficher le mot de passe" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:6px;display:flex;color:var(--muted,#6E6379);">' + eyeIconSVG(false) + '</button>' +
+    '</div>';
+  }
+
+  function wirePasswordToggle(id) {
+    var btn = document.getElementById(id + "-toggle");
+    var input = document.getElementById(id);
+    if (!btn || !input) return;
+    btn.addEventListener("click", function () {
+      var showing = input.type === "text";
+      input.type = showing ? "password" : "text";
+      btn.innerHTML = eyeIconSVG(!showing);
+      btn.setAttribute("aria-label", showing ? "Afficher le mot de passe" : "Masquer le mot de passe");
+      input.focus();
+    });
+  }
+
   function renderAuthStep() {
     viewEl.innerHTML =
       '<div style="font-family:Fraunces,serif;font-weight:700;font-size:19px;color:var(--ink,#241B2F);margin-bottom:18px;">Connexion / Inscription</div>' +
       '<div id="sb-err" style="display:none;background:#FAECE7;color:#B93F2E;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:14px;"></div>' +
       '<input id="sb-email" type="email" placeholder="Email" autocomplete="email" style="' + inputStyle() + '">' +
-      '<input id="sb-password" type="password" placeholder="Mot de passe" autocomplete="current-password" style="' + inputStyle() + '">' +
+      passwordFieldHTML("sb-password", "current-password") +
       '<button id="sb-login-btn" style="' + btnPrimaryStyle() + '">Se connecter</button>' +
       '<button id="sb-signup-btn" style="' + btnGhostStyle() + '">Créer un compte</button>' +
       '<div style="color:var(--muted,#6E6379);font-size:12px;margin-top:14px;text-align:center;">Une vérification en deux étapes (code à 6 chiffres) est requise à chaque connexion.</div>';
+
+    wirePasswordToggle("sb-password");
 
     document.getElementById("sb-login-btn").addEventListener("click", function () {
       var email = document.getElementById("sb-email").value.trim();
@@ -190,7 +219,13 @@
       var session = res.data.session;
       if (session) setCookie(session.access_token, session.expires_in);
       closeModal();
-      window.location.reload();
+      var next = new URLSearchParams(window.location.search).get("next");
+      // On ne suit "next" que s'il s'agit d'un chemin local (sécurité anti-open-redirect).
+      if (next && next.indexOf("/") === 0 && next.indexOf("//") !== 0) {
+        window.location.href = next;
+      } else {
+        window.location.reload();
+      }
     });
   }
 
