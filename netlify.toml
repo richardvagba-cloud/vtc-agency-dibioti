@@ -18,3 +18,9 @@
 [[edge_functions]]
   path = "/sous-agents.html"
   function = "protect"
+[[edge_functions]]
+  path = "/admin-equipe"
+  function = "protect"
+[[edge_functions]]
+  path = "/admin-equipe.html"
+  function = "protect"

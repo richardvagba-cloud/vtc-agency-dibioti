@@ -6,6 +6,8 @@ Disallow: /sous-agents
 Disallow: /sous-agents.html
 Disallow: /membre
 Disallow: /membre.html
+Disallow: /admin-equipe
+Disallow: /admin-equipe.html
 Disallow: /activer-acces.html
 Disallow: /connexion-requise.html
 

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<title>Équipe · Admin VTC.AGENCY</title>
+<meta name="description" content="Tableau de pilotage réservé à l'administrateur de VTC.AGENCY.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://dibioti.com/admin-equipe">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF5EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.6;}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 64px;}
+.hero{padding:48px 0 20px;}
+.eyebrow{font-size:12px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:14px;}
+.hero h1{font-size:30px;line-height:1.2;margin-bottom:10px;}
+.hero p{color:var(--muted);font-size:15px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:20px;}
+.card h2{font-size:20px;margin-bottom:4px;}
+.card .sub{color:var(--muted);font-size:13px;margin-bottom:16px;}
+.note{background:var(--teal-bg);color:var(--teal);border-radius:12px;padding:12px 16px;font-size:13px;margin:0 0 20px;}
+.msg{border-radius:12px;padding:12px 16px;font-size:14px;margin:14px 0 0;}
+.msg.err{background:var(--error-bg);color:var(--coral-hover);}
+.msg.ok{background:var(--teal-bg);color:var(--teal);}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:12px 22px;border-radius:24px;font:600 14px var(--font-body);cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+.btn-primary:hover{background:var(--coral-hover);}
+.btn-primary[disabled]{opacity:.6;cursor:wait;}
+.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);padding:10px 18px;border-radius:24px;font:500 14px var(--font-body);cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;}
+.btn-ghost:hover{background:var(--paper-2);}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.field label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.field input{border:1px solid var(--line);background:var(--paper);padding:10px 12px;border-radius:10px;font-size:16px;color:var(--ink);width:100%;}
+.field input:focus{outline:2px solid var(--teal);outline-offset:1px;}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--teal-bg);color:var(--teal);}
+.list{list-style:none;}
+.list li{padding:14px 0;border-bottom:1px solid var(--line);}
+.list li:last-child{border-bottom:none;padding-bottom:0;}
+.list li:first-child{padding-top:0;}
+.list .t{font-weight:600;font-size:15px;}
+.list .d{color:var(--muted);font-size:13px;}
+.list .b{font-size:14px;margin-top:4px;white-space:pre-line;}
+.pin{color:var(--gold);font-size:12px;font-weight:600;}
+.empty{color:var(--muted);font-size:14px;}
+.goal-row{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;}
+.bar{grid-column:1/-1;height:8px;background:var(--paper-2);border-radius:6px;overflow:hidden;}
+.bar > i{display:block;height:100%;background:var(--teal);}
+.goal-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.goal-actions input{width:110px;border:1px solid var(--line);background:var(--paper);padding:8px 10px;border-radius:10px;font-size:16px;}
+.mini{background:none;border:1px solid var(--line);border-radius:18px;padding:6px 14px;min-height:44px;font:500 13px var(--font-body);cursor:pointer;color:var(--ink);}
+.mini:hover{background:var(--paper-2);}
+.mini.danger{color:var(--coral-deep);}
+.form-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;}
+.res a{color:var(--coral-deep);}
+.res li{padding:10px 0;}
+details{border-bottom:1px solid var(--line);padding:4px 0;}
+details:last-child{border-bottom:none;}
+summary{cursor:pointer;font-weight:600;font-size:15px;padding:10px 0;}
+details p{color:var(--muted);font-size:14px;padding-bottom:12px;}
+.back{display:inline-block;margin-top:12px;font-size:13px;color:var(--muted);text-decoration:none;}
+@media (max-width:640px){.form-grid{grid-template-columns:1fr 1fr;}.form-grid .full{grid-column:1/-1;}.hero h1{font-size:26px;}}
+
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;}
+.kpi b{display:block;font:600 24px var(--font-display);}
+.kpi span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.alerts{list-style:none;}
+.alerts li{padding:10px 14px;border-radius:10px;margin-bottom:8px;font-size:14px;background:var(--paper-2);}
+.alerts li.on{background:var(--error-bg);color:var(--coral-hover);}
+.alerts li.na{color:var(--muted);}
+.tw{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px;}
+th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;}
+td .id{display:block;font:500 12px 'IBM Plex Mono',monospace;color:var(--muted);}
+.p{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--paper-2);}
+.p.Moteur{background:var(--teal-bg);color:var(--teal);}
+.p.Activer{background:#FBEFD5;color:#7A5A12;}
+.p.Dormant{background:var(--error-bg);color:var(--coral-hover);}
+.warn{color:var(--coral-deep);font-weight:600;}
+.add-grid{display:grid;grid-template-columns:1fr 2fr 1fr auto;gap:12px;align-items:end;}
+.field select{border:1px solid var(--line);background:var(--paper);padding:10px 12px;border-radius:10px;font-size:16px;color:var(--ink);width:100%;}
+dialog{border:none;border-radius:16px;padding:24px;max-width:560px;width:calc(100% - 32px);background:var(--card);color:var(--ink);}
+dialog::backdrop{background:rgba(36,27,47,.55);}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;}
+.dgrid .full{grid-column:1/-1;}
+.dact{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr;}.add-grid{grid-template-columns:1fr;}.dgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="logo" href="/" aria-label="Dibioti Academy par VTC.AGENCY, accueil">Dibioti Academy <span>&middot;</span> VTC.AGENCY</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <div class="nav-panel" id="nav-panel">
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+        <li><a href="/agence.html#portail">Espace hôte</a></li>
+        <li><a href="/agence.html#reglement">Règlement</a></li>
+        <li><a href="/agence.html#contact">Contact</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/membre">Espace membre</a></li>
+      </ul>
+      <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+      <span id="nav-auth"></span>
+    </div>
+  </div>
+</nav>
+<span id="contenu"></span>
+
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Administrateur · <span id="who-id">…</span></div>
+    <h1>Pilotage de l'équipe</h1>
+    <p>Sous-agents et hôtes classés automatiquement, alertes de la semaine, ajout d'une personne par son identifiant Poppo.</p>
+  </header>
+
+  <p class="note">Page privée : seuls les comptes administrateur peuvent la voir. Les chiffres viennent des relevés Poppo (30 derniers jours) : relis-les avant de les annoncer à quelqu'un.</p>
+  <div id="load-msg" class="msg err" hidden></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card" aria-labelledby="h-alertes">
+    <h2 id="h-alertes">Alertes</h2>
+    <p class="sub">Une alerte est une question à vérifier, pas une conclusion.</p>
+    <ul class="alerts" id="alerts"></ul>
+  </section>
+
+  <section class="card" aria-labelledby="h-sa">
+    <h2 id="h-sa">Sous-agents</h2>
+    <p class="sub">Profil : Moteur (gains ≥ 1 700 000) · Activer (≥ 15 hôtes et moins de 5 000 par hôte) · Moyen (≥ 200 000) · sinon Dormant.</p>
+    <div class="tw"><table><thead><tr>
+      <th>Sous-agent</th><th class="n">Hôtes</th><th class="n">Gains</th><th class="n">Par hôte</th><th class="n">Part</th><th class="n">Taux réel</th><th class="n">Évol.</th><th>Profil</th><th></th>
+    </tr></thead><tbody id="t-sa"></tbody></table></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-ho">
+    <h2 id="h-ho">Hôtes directs et autres membres de l'équipe</h2>
+    <p class="sub">Un hôte avec des gains mais 00:00:00 de live est signalé « à vérifier ».</p>
+    <div class="tw"><table><thead><tr>
+      <th>Personne</th><th>Niveau</th><th class="n">Live 30 j</th><th class="n">Gains</th><th class="n">Commission</th><th>Contrôle</th><th></th>
+    </tr></thead><tbody id="t-ho"></tbody></table></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-add">
+    <h2 id="h-add">Ajouter une personne</h2>
+    <p class="sub">Entre son identifiant Poppo : elle apparaît dans le tableau et peut créer son compte sur le site avec cet identifiant. Le nom se lit sur poppo.com/@identifiant.</p>
+    <form id="add-form" class="add-grid" novalidate>
+      <div class="field"><label for="a-id">Identifiant Poppo</label><input id="a-id" inputmode="numeric" autocomplete="off" maxlength="15" required></div>
+      <div class="field"><label for="a-name">Nom</label><input id="a-name" maxlength="80" autocomplete="off"></div>
+      <div class="field"><label for="a-kind">Type</label>
+        <select id="a-kind"><option value="sub_agent">Sous-agent</option><option value="host">Hôte</option><option value="team">Équipe (hors agence)</option></select></div>
+      <button class="btn-primary" type="submit" id="a-btn">Ajouter</button>
+    </form>
+    <div id="a-msg" class="msg" hidden></div>
+    <p style="margin-top:14px;"><a class="back" href="/membre">← Retour à l'espace membre</a></p>
+  </section>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <form id="e-form" method="dialog" novalidate>
+    <h2 id="dlg-title" style="font-size:20px;margin-bottom:4px;">Modifier</h2>
+    <p class="sub" id="dlg-sub" style="color:var(--muted);font-size:13px;margin-bottom:14px;"></p>
+    <div class="dgrid">
+      <div class="field full"><label for="e-name">Nom</label><input id="e-name" maxlength="80"></div>
+      <div class="field"><label for="e-kind">Type</label>
+        <select id="e-kind"><option value="sub_agent">Sous-agent</option><option value="host">Hôte</option><option value="team">Équipe (hors agence)</option></select></div>
+      <div class="field"><label for="e-level">Niveau</label><input id="e-level" maxlength="10"></div>
+      <div class="field"><label for="e-hosts">Nombre d'hôtes</label><input id="e-hosts" inputmode="numeric"></div>
+      <div class="field"><label for="e-live">Live 30 j (hh:mm:ss)</label><input id="e-live" placeholder="00:00:00"></div>
+      <div class="field"><label for="e-gains">Gains (pièces)</label><input id="e-gains" inputmode="numeric"></div>
+      <div class="field"><label for="e-prev">Gains semaine précédente</label><input id="e-prev" inputmode="numeric"></div>
+      <div class="field"><label for="e-comm">Commission (pièces)</label><input id="e-comm" inputmode="numeric"></div>
+      <div class="field"><label for="e-rate">Taux affiché (%)</label><input id="e-rate" inputmode="decimal"></div>
+      <div class="field full"><label for="e-note">Note</label><input id="e-note" maxlength="300"></div>
+    </div>
+    <div id="e-msg" class="msg err" hidden></div>
+    <div class="dact">
+      <button class="btn-primary" type="submit" id="e-save">Enregistrer</button>
+      <button class="btn-ghost" type="button" id="e-cancel">Annuler</button>
+      <button class="mini danger" type="button" id="e-del">Retirer du tableau</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var sb = null, rows = [], editing = null;
+
+  function el(tag, cls, text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; return n; }
+  function nb(v){ return v==null ? '—' : Number(v).toLocaleString('fr-FR'); }
+  function pct(v, d){ return v==null ? '—' : (v*100).toLocaleString('fr-FR',{maximumFractionDigits:d==null?0:d}) + ' %'; }
+  function hms(s){ if(s==null) return '—'; var h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60; return [h,m,x].map(function(n){return String(n).padStart(2,'0');}).join(':'); }
+  function parseNum(v){ v=(v||'').replace(/[\s ]/g,'').replace(',','.'); if(v==='') return null; var n=Number(v); return isFinite(n)&&n>=0 ? n : NaN; }
+  function parseHms(v){ v=(v||'').trim(); if(v==='') return null; var m=v.match(/^(\d{1,3}):([0-5]\d):([0-5]\d)$/); return m ? (+m[1])*3600+(+m[2])*60+(+m[3]) : NaN; }
+  function show(id, text, cls){ var n=$(id); n.textContent=text; if(cls) n.className='msg '+cls; n.hidden=false; }
+
+  function profile(p){
+    var g=p.gains||0, h=p.hosts_count;
+    if(g>=1700000) return 'Moteur';
+    if(h!=null && h>=15 && g/h<5000) return 'Activer';
+    if(g>=200000) return 'Moyen';
+    return 'Dormant';
+  }
+
+  function render(){
+    var sa = rows.filter(function(r){return r.kind==='sub_agent';}).sort(function(a,b){return (b.gains||0)-(a.gains||0);});
+    var ho = rows.filter(function(r){return r.kind!=='sub_agent';}).sort(function(a,b){return (b.gains||0)-(a.gains||0);});
+    var total = sa.reduce(function(s,r){return s+(r.gains||0);},0);
+
+    // KPI
+    var cnt = {Moteur:0,Activer:0,Moyen:0,Dormant:0};
+    sa.forEach(function(r){ cnt[profile(r)]++; });
+    var top4 = sa.slice(0,4).reduce(function(s,r){return s+(r.gains||0);},0);
+    var k = $('kpis'); k.textContent='';
+    [[nb(sa.length),'Sous-agents'],[nb(total),'Gains sous-agents (30 j)'],[total?pct(top4/total):'—','Part des 4 premiers'],
+     [cnt.Moteur+' · '+cnt.Activer+' · '+cnt.Moyen+' · '+cnt.Dormant,'Moteur · Activer · Moyen · Dormant']]
+     .forEach(function(x){ var d=el('div','kpi'); d.appendChild(el('b',null,x[0])); d.appendChild(el('span',null,x[1])); k.appendChild(d); });
+
+    // Sous-agents
+    var tb=$('t-sa'); tb.textContent='';
+    sa.forEach(function(r){
+      var tr=el('tr'), c=el('td'), prof=profile(r);
+      c.appendChild(document.createTextNode(r.display_name||'(sans nom)')); c.appendChild(el('span','id',r.poppo_id)); tr.appendChild(c);
+      var per = (r.hosts_count>0) ? r.gains/r.hosts_count : null;
+      var real = (r.gains>0 && r.commission!=null) ? r.commission/r.gains : null;
+      var gap = (real!=null && r.shown_rate!=null) ? Math.abs(real*100-r.shown_rate)>1 : false;
+      var evo = (r.prev_gains>0 && r.gains!=null) ? r.gains/r.prev_gains-1 : null;
+      [nb(r.hosts_count), nb(r.gains), per==null?'—':nb(Math.round(per)), total?pct((r.gains||0)/total):'—', pct(real,1), evo==null?'—':((evo>0?'+':'')+pct(evo))]
+        .forEach(function(t,i){ var td=el('td','n',t); if(i===4 && gap) td.classList.add('warn'); tr.appendChild(td); });
+      var pc=el('td'); pc.appendChild(el('span','p '+prof,prof)); tr.appendChild(pc);
+      tr.appendChild(editCell(r)); tb.appendChild(tr);
+    });
+    if(!sa.length){ var e=el('tr'); var td=el('td','empty','Aucun sous-agent.'); td.colSpan=9; e.appendChild(td); tb.appendChild(e); }
+
+    // Hôtes
+    var th=$('t-ho'); th.textContent='';
+    ho.forEach(function(r){
+      var tr=el('tr'), c=el('td');
+      c.appendChild(document.createTextNode(r.display_name||'(sans nom)')); c.appendChild(el('span','id',r.poppo_id+(r.kind==='team'?' · équipe':''))); tr.appendChild(c);
+      tr.appendChild(el('td',null,r.level||'—'));
+      tr.appendChild(el('td','n',hms(r.live_seconds)));
+      tr.appendChild(el('td','n',nb(r.gains)));
+      tr.appendChild(el('td','n',nb(r.commission)));
+      var chk=el('td'); if(r.kind==='host' && r.gains>0 && r.live_seconds===0) chk.appendChild(el('span','warn','à vérifier : gains sans live')); tr.appendChild(chk);
+      tr.appendChild(editCell(r)); th.appendChild(tr);
+    });
+    if(!ho.length){ var e2=el('tr'); var t2=el('td','empty','Personne pour le moment.'); t2.colSpan=7; e2.appendChild(t2); th.appendChild(e2); }
+
+    alerts(sa, ho, total, top4);
+  }
+
+  function editCell(r){
+    var td=el('td'), b=el('button','mini','Modifier'); b.type='button';
+    b.setAttribute('aria-label','Modifier '+(r.display_name||r.poppo_id));
+    b.addEventListener('click', function(){ openEdit(r); }); td.appendChild(b); return td;
+  }
+
+  function alerts(sa, ho, total, top4){
+    var ul=$('alerts'); ul.textContent='';
+    function add(on, text, na){ var li=el('li', na?'na':(on?'on':''), (na?'À mesurer : ':(on?'⚠ ':'✓ '))+text); ul.appendChild(li); }
+    var first = sa[0];
+    if(total>0 && first){ var s=first.gains/total; add(s>0.3, 'Le premier sous-agent ('+first.display_name+') fait '+pct(s)+' des gains (seuil 30 %).'); }
+    if(total>0){ var s4=top4/total; add(s4>0.7, 'Les 4 premiers font '+pct(s4)+' des gains (seuil 70 %).'); }
+    var drops = sa.filter(function(r){ return profile(r)==='Moteur' && r.prev_gains>0 && r.gains/r.prev_gains-1 < -0.2; });
+    if(sa.some(function(r){return r.prev_gains>0;})) add(drops.length>0, drops.length ? 'Moteur en baisse de plus de 20 % : '+drops.map(function(r){return r.display_name;}).join(', ')+'.' : 'Aucun moteur en baisse de plus de 20 %.');
+    else add(false,'Baisse d’un moteur : renseigne « gains semaine précédente » pour activer cette alerte.',true);
+    var gaps = sa.filter(function(r){ return r.gains>0 && r.commission!=null && r.shown_rate!=null && Math.abs(r.commission/r.gains*100-r.shown_rate)>1; });
+    if(sa.some(function(r){return r.commission!=null && r.shown_rate!=null;})) add(gaps.length>0, gaps.length ? 'Écart entre taux affiché et taux réel (plus de 1 point) : '+gaps.map(function(r){return r.display_name;}).join(', ')+'. Ne rien annoncer avant confirmation par Poppo.' : 'Aucun écart de taux de plus de 1 point.');
+    else add(false,'Écart de taux : renseigne commission et taux affiché des sous-agents.',true);
+    var hosts = ho.filter(function(r){return r.kind==='host';});
+    var noLive = hosts.filter(function(r){return r.gains>0 && r.live_seconds===0;});
+    add(noLive.length>0, noLive.length+' hôte(s) avec des gains mais 00:00:00 de live.');
+    if(hosts.length){ var zero=hosts.filter(function(r){return !(r.gains>0);}).length; add(zero/hosts.length>2/3, zero+' hôte(s) sur '+hosts.length+' sans gain sur 30 jours (seuil : plus de 2 sur 3). Seuls les hôtes saisis sont comptés.'); }
+    var own = hosts.reduce(function(s,r){return s+(r.commission||0);},0);
+    var mine = hosts.filter(function(r){return r.poppo_id===window.__myPoppo;})[0];
+    if(mine && own>0) { var o=(mine.commission||0)/own; add(o>0.75, 'Ton propre compte fait '+pct(o)+' de ta commission d’hôte (seuil 75 %).'); }
+  }
+
+  function openEdit(r){
+    editing=r; $('e-msg').hidden=true;
+    $('dlg-title').textContent=r.display_name||r.poppo_id;
+    $('dlg-sub').textContent='Identifiant Poppo '+r.poppo_id+' · laisse un champ vide s’il n’est pas connu.';
+    $('e-name').value=r.display_name||''; $('e-kind').value=r.kind; $('e-level').value=r.level||'';
+    $('e-hosts').value=r.hosts_count==null?'':r.hosts_count; $('e-live').value=r.live_seconds==null?'':hms(r.live_seconds);
+    $('e-gains').value=r.gains==null?'':r.gains; $('e-prev').value=r.prev_gains==null?'':r.prev_gains;
+    $('e-comm').value=r.commission==null?'':r.commission; $('e-rate').value=r.shown_rate==null?'':r.shown_rate;
+    $('e-note').value=r.note||''; $('dlg').showModal();
+  }
+
+  function rpcMsg(code){
+    return ({forbidden:"Action réservée à l'administrateur.", invalid:"Valeurs invalides : vérifie l'identifiant et les nombres."})[code] || 'Erreur : réessaie.';
+  }
+
+  function load(){
+    return sb.from('team_people').select('*').limit(500).then(function(r){
+      if(r.error){ show('load-msg',"Impossible de charger les données. Vérifie que le script SQL « espace-admin.sql » a bien été exécuté.",'err'); return; }
+      rows=r.data||[]; $('load-msg').hidden=true; render();
+    });
+  }
+
+  function init(){
+    sb.auth.getSession().then(function(s){
+      if(!s.data.session){ location.href='/connexion-requise.html?next=/admin-equipe'; return; }
+      return sb.from('members').select('role,status,poppo_id').limit(1).then(function(r){
+        var m=r.data&&r.data[0];
+        if(r.error||!m||m.status!=='active'){ location.href='/activer-acces.html'; return; }
+        if(m.role!=='admin'){ location.href='/membre'; return; }
+        window.__myPoppo=m.poppo_id; $('who-id').textContent='ID '+m.poppo_id;
+        return load();
+      });
+    });
+  }
+
+  $('add-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var id=$('a-id').value.replace(/\D/g,''), btn=$('a-btn');
+    if(!/^[0-9]{4,15}$/.test(id)){ show('a-msg',"Identifiant invalide : 4 à 15 chiffres.",'err'); return; }
+    var old=rows.filter(function(r){return r.poppo_id===id;})[0];
+    btn.disabled=true;
+    sb.rpc('admin_upsert_person',{p_poppo_id:id,p_name:$('a-name').value.trim(),p_kind:$('a-kind').value,p_level:old?old.level:null,
+      p_hosts:old?old.hosts_count:null,p_gains:old?old.gains:null,p_commission:old?old.commission:null,p_rate:old?old.shown_rate:null,
+      p_live:old?old.live_seconds:null,p_prev:old?old.prev_gains:null,p_note:old?old.note:''}).then(function(r){
+      btn.disabled=false;
+      if(r.error||r.data!=='ok'){ show('a-msg', rpcMsg(r.data), 'err'); return; }
+      show('a-msg', id+' ajouté. Complète ses chiffres avec « Modifier ».', 'ok');
+      $('a-id').value=''; $('a-name').value=''; load();
+    });
+  });
+
+  $('e-cancel').addEventListener('click', function(){ $('dlg').close(); });
+  $('e-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v={hosts:parseNum($('e-hosts').value),gains:parseNum($('e-gains').value),prev:parseNum($('e-prev').value),
+      comm:parseNum($('e-comm').value),rate:parseNum($('e-rate').value),live:parseHms($('e-live').value)};
+    if(Object.keys(v).some(function(k){return Number.isNaN(v[k]);}) || (v.rate!=null&&v.rate>100)){ show('e-msg','Une valeur est invalide (nombres positifs ; live au format hh:mm:ss).','err'); return; }
+    $('e-save').disabled=true;
+    sb.rpc('admin_upsert_person',{p_poppo_id:editing.poppo_id,p_name:$('e-name').value.trim(),p_kind:$('e-kind').value,p_level:$('e-level').value.trim(),
+      p_hosts:v.hosts==null?null:Math.round(v.hosts),p_gains:v.gains,p_commission:v.comm,p_rate:v.rate,p_live:v.live,p_prev:v.prev,p_note:$('e-note').value.trim()}).then(function(r){
+      $('e-save').disabled=false;
+      if(r.error||r.data!=='ok'){ show('e-msg', rpcMsg(r.data), 'err'); return; }
+      $('dlg').close(); load();
+    });
+  });
+  $('e-del').addEventListener('click', function(){
+    if(!confirm('Retirer '+(editing.display_name||editing.poppo_id)+' du tableau ? (son accès au site n’est pas supprimé)')) return;
+    sb.rpc('admin_remove_person',{p_poppo_id:editing.poppo_id}).then(function(r){
+      if(r.error||r.data!=='ok'){ show('e-msg', rpcMsg(r.data), 'err'); return; }
+      $('dlg').close(); load();
+    });
+  });
+
+  (function wait(n){ if(window.sbClient){ sb=window.sbClient; init(); } else if(n<100) setTimeout(function(){wait(n+1);},100); else show('load-msg','Chargement impossible. Recharge la page.','err'); })(0);
+})();
+</script>
+</body>
+</html>

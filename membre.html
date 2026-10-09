@@ -140,6 +140,7 @@ details p{color:var(--muted);font-size:14px;padding-bottom:12px;}
       <li><a href="/agence.html#reglement">Règlement de l'agence</a></li>
       <li><a href="/dashboard">Tableau de bord de suivi des sessions</a></li>
       <li id="res-sub" hidden><a href="/sous-agents">Espace sous-agents</a></li>
+      <li id="res-admin" hidden><a href="/admin-equipe">Pilotage de l'équipe (administrateur)</a></li>
       <li><a href="/agence.html#contact">Contacter l'équipe</a></li>
     </ul>
   </section>
@@ -183,6 +184,7 @@ details p{color:var(--muted);font-size:14px;padding-bottom:12px;}
       $('who-role').textContent = ROLE[m.role] || 'Membre';
       $('who-line').textContent = 'Identifiant Poppo ' + m.poppo_id + '. Retrouvez ici les annonces, le planning et vos objectifs.';
       if (m.role === 'sub_agent' || m.role === 'admin') $('res-sub').hidden = false;
+      if (m.role === 'admin') $('res-admin').hidden = false;
       return m;
     });
   }

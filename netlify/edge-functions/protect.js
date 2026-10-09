@@ -3,6 +3,7 @@
 //   - non connecté           -> /connexion-requise.html
 //   - connecté, sans accès   -> /activer-acces.html
 //   - /sous-agents           -> rôle sub_agent ou admin uniquement (sinon /membre)
+//   - /admin-equipe          -> rôle admin uniquement (sinon /membre)
 const SUPABASE_URL = "https://exlzfvatjonglxqsplvr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_lrRP0LYEwPm8C48qmw0Z_w_WrpxbHBm";
 
@@ -38,6 +39,10 @@ export default async (request, context) => {
   if (!m || m.status !== "active") return Response.redirect(activateUrl, 302);
 
   if (path === "/sous-agents" && !SUB_AGENT_ROLES.includes(m.role)) {
+    return Response.redirect(new URL("/membre", request.url), 302);
+  }
+
+  if (path === "/admin-equipe" && m.role !== "admin") {
     return Response.redirect(new URL("/membre", request.url), 302);
   }
 
