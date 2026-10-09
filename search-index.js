@@ -1,5 +1,5 @@
 window.VTC_SEARCH_INDEX = [
-  { title: "Accueil", snippet: "Deux espaces, deux publics : Dibioti Academy pour les débutants, VTC.AGENCY pour la vitrine agence.", url: "/index.html" },
+  { title: "Accueil", snippet: "Deux espaces, deux publics : Dibioti Academy pour les débutants, VTC.AGENCY pour la vitrine agence.", url: "/" },
   { title: "Dibioti Academy — Pour les débutants", snippet: "Parcours guidé, lexique des termes, contact rapide pour lever les blocages du premier pas.", url: "/debutant.html" },
   { title: "Lexique — Points, Retrait, Agence, Sous-agent, Coins", snippet: "Définitions simples des termes utilisés sur Poppo Live et dans l'agence.", url: "/debutant.html" },
   { title: "VTC.AGENCY — Accueil", snippet: "Agence officielle Poppo Live · ID 44904360. Transparence, accompagnement réel, croissance par niveaux.", url: "/agence.html#accueil" },
