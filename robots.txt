@@ -1,7 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /dashboard
 Disallow: /dashboard.html
+Disallow: /sous-agents
 Disallow: /sous-agents.html
+Disallow: /membre
+Disallow: /membre.html
+Disallow: /activer-acces.html
 Disallow: /connexion-requise.html
 
 Sitemap: https://dibioti.com/sitemap.xml

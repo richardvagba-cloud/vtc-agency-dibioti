@@ -1,7 +1,20 @@
+# Pages réservées : les deux écritures (avec et sans .html) sont protégées,
+# sinon /sous-agents ou /dashboard resteraient accessibles sans connexion.
+[[edge_functions]]
+  path = "/membre"
+  function = "protect"
+[[edge_functions]]
+  path = "/membre.html"
+  function = "protect"
+[[edge_functions]]
+  path = "/dashboard"
+  function = "protect"
 [[edge_functions]]
   path = "/dashboard.html"
   function = "protect"
-
+[[edge_functions]]
+  path = "/sous-agents"
+  function = "protect"
 [[edge_functions]]
   path = "/sous-agents.html"
   function = "protect"

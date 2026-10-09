@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<title>Espace membre — VTC.AGENCY</title>
+<meta name="description" content="Espace réservé aux hôtes de l'agence VTC.AGENCY : annonces, planning des lives, objectifs et ressources.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://dibioti.com/membre">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF5EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.6;}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px 64px;}
+.hero{padding:48px 0 20px;}
+.eyebrow{font-size:12px;color:var(--coral-deep);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:14px;}
+.hero h1{font-size:30px;line-height:1.2;margin-bottom:10px;}
+.hero p{color:var(--muted);font-size:15px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:20px;}
+.card h2{font-size:20px;margin-bottom:4px;}
+.card .sub{color:var(--muted);font-size:13px;margin-bottom:16px;}
+.note{background:var(--teal-bg);color:var(--teal);border-radius:12px;padding:12px 16px;font-size:13px;margin:0 0 20px;}
+.msg{border-radius:12px;padding:12px 16px;font-size:14px;margin:14px 0 0;}
+.msg.err{background:var(--error-bg);color:var(--coral-hover);}
+.msg.ok{background:var(--teal-bg);color:var(--teal);}
+.btn-primary{background:var(--coral-deep);color:#fff;border:none;padding:12px 22px;border-radius:24px;font:600 14px var(--font-body);cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+.btn-primary:hover{background:var(--coral-hover);}
+.btn-primary[disabled]{opacity:.6;cursor:wait;}
+.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);padding:10px 18px;border-radius:24px;font:500 14px var(--font-body);cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;}
+.btn-ghost:hover{background:var(--paper-2);}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.field label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.field input{border:1px solid var(--line);background:var(--paper);padding:10px 12px;border-radius:10px;font-size:16px;color:var(--ink);width:100%;}
+.field input:focus{outline:2px solid var(--teal);outline-offset:1px;}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--teal-bg);color:var(--teal);}
+.list{list-style:none;}
+.list li{padding:14px 0;border-bottom:1px solid var(--line);}
+.list li:last-child{border-bottom:none;padding-bottom:0;}
+.list li:first-child{padding-top:0;}
+.list .t{font-weight:600;font-size:15px;}
+.list .d{color:var(--muted);font-size:13px;}
+.list .b{font-size:14px;margin-top:4px;white-space:pre-line;}
+.pin{color:var(--gold);font-size:12px;font-weight:600;}
+.empty{color:var(--muted);font-size:14px;}
+.goal-row{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;}
+.bar{grid-column:1/-1;height:8px;background:var(--paper-2);border-radius:6px;overflow:hidden;}
+.bar > i{display:block;height:100%;background:var(--teal);}
+.goal-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.goal-actions input{width:110px;border:1px solid var(--line);background:var(--paper);padding:8px 10px;border-radius:10px;font-size:16px;}
+.mini{background:none;border:1px solid var(--line);border-radius:18px;padding:6px 14px;min-height:44px;font:500 13px var(--font-body);cursor:pointer;color:var(--ink);}
+.mini:hover{background:var(--paper-2);}
+.mini.danger{color:var(--coral-deep);}
+.form-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;}
+.res a{color:var(--coral-deep);}
+.res li{padding:10px 0;}
+details{border-bottom:1px solid var(--line);padding:4px 0;}
+details:last-child{border-bottom:none;}
+summary{cursor:pointer;font-weight:600;font-size:15px;padding:10px 0;}
+details p{color:var(--muted);font-size:14px;padding-bottom:12px;}
+.back{display:inline-block;margin-top:12px;font-size:13px;color:var(--muted);text-decoration:none;}
+@media (max-width:640px){.form-grid{grid-template-columns:1fr 1fr;}.form-grid .full{grid-column:1/-1;}.hero h1{font-size:26px;}}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="logo" href="/" aria-label="Dibioti Academy par VTC.AGENCY, accueil">Dibioti Academy <span>&middot;</span> VTC.AGENCY</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <div class="nav-panel" id="nav-panel">
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+        <li><a href="/agence.html#portail">Espace hôte</a></li>
+        <li><a href="/agence.html#reglement">Règlement</a></li>
+        <li><a href="/agence.html#contact">Contact</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/membre" class="active" aria-current="page">Espace membre</a></li>
+      </ul>
+      <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+      <span id="nav-auth"></span>
+    </div>
+  </div>
+</nav>
+<span id="contenu"></span>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Espace membre · <span id="who-role">VTC.AGENCY</span></div>
+    <h1>Bienvenue dans votre espace</h1>
+    <p id="who-line">Chargement de votre espace…</p>
+  </div>
+
+  <section class="card" aria-labelledby="h-ann">
+    <h2 id="h-ann">Annonces de l'agence</h2>
+    <p class="sub">Les dernières informations de l'équipe.</p>
+    <ul class="list" id="ann-list"><li class="empty">Chargement…</li></ul>
+  </section>
+
+  <section class="card" aria-labelledby="h-live">
+    <h2 id="h-live">Planning des lives</h2>
+    <p class="sub">Prochains rendez-vous (heure de votre appareil).</p>
+    <ul class="list" id="live-list"><li class="empty">Chargement…</li></ul>
+  </section>
+
+  <section class="card" aria-labelledby="h-goals">
+    <h2 id="h-goals">Mes objectifs</h2>
+    <p class="sub">Vos objectifs personnels, enregistrés sur votre compte : visibles de vous seul et accessibles depuis tous vos appareils.</p>
+    <form id="goal-form" class="form-grid" novalidate>
+      <div class="field full"><label for="g-title">Objectif</label><input id="g-title" maxlength="120" placeholder="ex. 20 heures de live ce mois-ci" required></div>
+      <div class="field"><label for="g-target">Cible</label><input id="g-target" type="number" min="0" step="any" inputmode="decimal" placeholder="20"></div>
+      <div class="field"><label for="g-unit">Unité</label><input id="g-unit" maxlength="20" placeholder="heures"></div>
+      <div class="field"><label for="g-due">Échéance</label><input id="g-due" type="date"></div>
+    </form>
+    <button class="btn-primary" type="submit" form="goal-form" id="g-add">Ajouter l'objectif</button>
+    <div class="msg err" id="goal-msg" role="status" aria-live="polite" hidden></div>
+    <ul class="list" id="goal-list" style="margin-top:20px"></ul>
+  </section>
+
+  <section class="card" aria-labelledby="h-res">
+    <h2 id="h-res">Ressources et guides</h2>
+    <p class="sub">Pour avancer pas à pas.</p>
+    <ul class="list res">
+      <li><a href="/debutant.html">Guide du débutant sur Poppo Live</a></li>
+      <li><a href="/guide-horaires.html">Les meilleurs horaires pour lancer un live</a></li>
+      <li><a href="/guide-arnaque.html">Reconnaître et éviter les arnaques</a></li>
+      <li><a href="/agence.html#reglement">Règlement de l'agence</a></li>
+      <li><a href="/dashboard">Tableau de bord de suivi des sessions</a></li>
+      <li id="res-sub" hidden><a href="/sous-agents">Espace sous-agents</a></li>
+      <li><a href="/agence.html#contact">Contacter l'équipe</a></li>
+    </ul>
+  </section>
+
+  <section class="card" aria-labelledby="h-faq">
+    <h2 id="h-faq">Questions fréquentes</h2>
+    <p class="sub">Les réponses rapides.</p>
+    <details><summary>Comment retrouver mon identifiant Poppo ?</summary><p>Dans l'application Poppo Live, ouvrez votre profil : l'ID est affiché sous votre nom.</p></details>
+    <details><summary>Je n'ai plus accès à l'espace, que faire ?</summary><p>Votre accès est lié à votre appartenance à l'agence VTC.AGENCY. Si vous pensez qu'il s'agit d'une erreur, écrivez-nous via la page Contact.</p></details>
+    <details><summary>Qui voit mes objectifs ?</summary><p>Vous seul : ils sont rattachés à votre compte et protégés par des règles d'accès côté base de données.</p></details>
+  </section>
+
+  <p><button class="btn-ghost" type="button" id="btn-logout">Se déconnecter</button></p>
+</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var sb = null;
+  var ROLE = { member: 'Membre', sub_agent: 'Sous-agent', admin: 'Administrateur' };
+
+  function el(tag, cls, text){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function fmtDate(iso){
+    try { return new Date(iso).toLocaleString('fr-FR', { weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit' }); }
+    catch(e){ return iso; }
+  }
+  function ready(cb, tries){
+    if (window.sbClient) return cb(window.sbClient);
+    if ((tries||0) > 100) { $('who-line').textContent = 'Chargement impossible. Rechargez la page.'; return; }
+    setTimeout(function(){ ready(cb, (tries||0)+1); }, 100);
+  }
+
+  function loadMember(){
+    return sb.from('members').select('role,status,poppo_id').limit(1).then(function(r){
+      var m = r.data && r.data[0];
+      if (r.error || !m || m.status !== 'active') { window.location.href = '/activer-acces.html'; return null; }
+      $('who-role').textContent = ROLE[m.role] || 'Membre';
+      $('who-line').textContent = 'Identifiant Poppo ' + m.poppo_id + '. Retrouvez ici les annonces, le planning et vos objectifs.';
+      if (m.role === 'sub_agent' || m.role === 'admin') $('res-sub').hidden = false;
+      return m;
+    });
+  }
+
+  function loadAnnouncements(){
+    return sb.from('announcements').select('id,title,body,pinned,created_at')
+      .order('pinned', { ascending:false }).order('created_at', { ascending:false }).limit(20)
+      .then(function(r){
+        var ul = $('ann-list'); ul.textContent = '';
+        if (r.error) { ul.appendChild(el('li','empty',"Impossible de charger les annonces.")); return; }
+        if (!r.data.length) { ul.appendChild(el('li','empty',"Aucune annonce pour le moment.")); return; }
+        r.data.forEach(function(a){
+          var li = el('li');
+          if (a.pinned) li.appendChild(el('div','pin','ÉPINGLÉ'));
+          li.appendChild(el('div','t',a.title));
+          li.appendChild(el('div','d',new Date(a.created_at).toLocaleDateString('fr-FR')));
+          if (a.body) li.appendChild(el('div','b',a.body));
+          ul.appendChild(li);
+        });
+      });
+  }
+
+  function loadLives(){
+    var since = new Date(Date.now() - 3600*1000).toISOString();
+    return sb.from('live_schedule').select('id,starts_at,title,details').gte('starts_at', since)
+      .order('starts_at', { ascending:true }).limit(15)
+      .then(function(r){
+        var ul = $('live-list'); ul.textContent = '';
+        if (r.error) { ul.appendChild(el('li','empty',"Impossible de charger le planning.")); return; }
+        if (!r.data.length) { ul.appendChild(el('li','empty',"Aucun live programmé pour le moment.")); return; }
+        r.data.forEach(function(l){
+          var li = el('li');
+          li.appendChild(el('div','t',l.title));
+          li.appendChild(el('div','d',fmtDate(l.starts_at)));
+          if (l.details) li.appendChild(el('div','b',l.details));
+          ul.appendChild(li);
+        });
+      });
+  }
+
+  function goalMsg(text){ var m = $('goal-msg'); m.hidden = !text; m.textContent = text || ''; }
+
+  function renderGoal(g){
+    var li = el('li');
+    var row = el('div','goal-row');
+    var left = el('div');
+    left.appendChild(el('div','t',(g.done ? '✓ ' : '') + g.title));
+    var parts = [];
+    if (g.target != null) parts.push(g.progress + ' / ' + g.target + (g.unit ? ' ' + g.unit : ''));
+    if (g.due_date) parts.push('avant le ' + new Date(g.due_date + 'T12:00:00').toLocaleDateString('fr-FR'));
+    left.appendChild(el('div','d',parts.join(' · ') || 'Sans cible chiffrée'));
+    row.appendChild(left);
+    if (g.target > 0) {
+      var bar = el('div','bar'); bar.setAttribute('role','progressbar');
+      var pct = Math.max(0, Math.min(100, Math.round(g.progress / g.target * 100)));
+      bar.setAttribute('aria-valuenow', pct); bar.setAttribute('aria-valuemin','0'); bar.setAttribute('aria-valuemax','100');
+      bar.setAttribute('aria-label', 'Progression : ' + pct + ' %');
+      var i = el('i'); i.style.width = pct + '%'; bar.appendChild(i); row.appendChild(bar);
+    }
+    var act = el('div','goal-actions');
+    if (g.target != null) {
+      var inp = el('input'); inp.type = 'number'; inp.step = 'any'; inp.inputMode = 'decimal';
+      inp.value = g.progress; inp.setAttribute('aria-label', 'Progression de : ' + g.title);
+      var save = el('button','mini','Mettre à jour'); save.type = 'button';
+      save.addEventListener('click', function(){
+        var v = Number(inp.value); if (!isFinite(v) || v < 0) return;
+        update(g.id, { progress: v, done: g.target > 0 && v >= g.target });
+      });
+      act.appendChild(inp); act.appendChild(save);
+    }
+    var tog = el('button','mini', g.done ? 'Rouvrir' : 'Marquer atteint'); tog.type = 'button';
+    tog.addEventListener('click', function(){ update(g.id, { done: !g.done }); });
+    var del = el('button','mini danger','Supprimer'); del.type = 'button';
+    del.addEventListener('click', function(){
+      if (!window.confirm('Supprimer cet objectif ?')) return;
+      sb.from('member_goals').delete().eq('id', g.id).then(function(r){ if (r.error) goalMsg("Suppression impossible."); else loadGoals(); });
+    });
+    act.appendChild(tog); act.appendChild(del);
+    row.appendChild(act);
+    li.appendChild(row);
+    return li;
+  }
+  function update(id, patch){
+    goalMsg('');
+    sb.from('member_goals').update(patch).eq('id', id).then(function(r){
+      if (r.error) goalMsg("Mise à jour impossible. Réessayez."); else loadGoals();
+    });
+  }
+  function loadGoals(){
+    return sb.from('member_goals').select('*').order('done', { ascending:true }).order('created_at', { ascending:false })
+      .then(function(r){
+        var ul = $('goal-list'); ul.textContent = '';
+        if (r.error) { ul.appendChild(el('li','empty',"Impossible de charger vos objectifs.")); return; }
+        if (!r.data.length) { ul.appendChild(el('li','empty',"Aucun objectif pour le moment. Ajoutez le premier ci-dessus.")); return; }
+        r.data.forEach(function(g){ ul.appendChild(renderGoal(g)); });
+      });
+  }
+
+  function bind(){
+    $('goal-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      goalMsg('');
+      var title = $('g-title').value.trim();
+      if (!title) { goalMsg("Donnez un titre à l'objectif."); return; }
+      var t = $('g-target').value;
+      var target = t === '' ? null : Number(t);
+      if (target != null && (!isFinite(target) || target < 0)) { goalMsg("La cible doit être un nombre positif."); return; }
+      var row = { title: title, target: target, unit: $('g-unit').value.trim(), due_date: $('g-due').value || null };
+      $('g-add').disabled = true;
+      sb.from('member_goals').insert(row).then(function(r){
+        $('g-add').disabled = false;
+        if (r.error) { goalMsg("Ajout impossible. Réessayez."); return; }
+        $('goal-form').reset(); loadGoals();
+      });
+    });
+    $('btn-logout').addEventListener('click', function(){
+      sb.auth.signOut().then(function(){ window.location.href = '/index.html'; });
+    });
+  }
+
+  ready(function(client){
+    sb = client;
+    sb.auth.getSession().then(function(r){
+      if (!r.data || !r.data.session) { window.location.href = '/connexion-requise.html?next=/membre'; return; }
+      loadMember().then(function(m){
+        if (!m) return;
+        bind();
+        loadAnnouncements(); loadLives(); loadGoals();
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
