@@ -170,9 +170,40 @@
     .order-btn { width: 100%; padding: 12px 14px; margin-top: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { .order-btn { transition: none; } }
+  /* Menu du site (mêmes entrées que les autres pages, couleurs de cette page) */
+  nav { position: sticky; top: 0; z-index: 50; background: var(--bg-alt); border-bottom: 1px solid var(--hairline); }
+  .nav-inner { max-width: 1080px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; }
+  .logo { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.2px; margin-right: auto; color: var(--text); }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { font-family: var(--font-body); font-size: 14px; color: var(--text-dim); padding: 8px 14px; border-radius: 20px; text-decoration: none; display: inline-block; transition: all .15s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-cta { background: var(--gold); color: var(--bg); border: none; padding: 10px 20px; border-radius: 24px; font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+  #nav-auth .nav-cta { background: none !important; color: var(--text) !important; border: 1px solid var(--hairline) !important; }
+  /* La fenêtre de connexion reste claire, comme sur le reste du site */
+  #sb-auth-modal { color: #241B2F; }
 </style>
 </head>
 <body>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/supabase-auth.js"></script>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
+    <ul class="nav-links">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+      <li><a href="/agence.html#portail">Espace hôte</a></li>
+      <li><a href="/agence.html#reglement">Règlement</a></li>
+      <li><a href="/agence.html#contact">Contact</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+    <span id="nav-auth"></span>
+  </div>
+</nav>
+
 <div class="wrap">
 
   <header>
