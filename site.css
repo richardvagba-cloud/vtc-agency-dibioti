@@ -17,6 +17,7 @@
   --coral-deep: #B93F2E;     /* actions principales (boutons, liens d'action) */
   --coral-hover: #9C3527;
   --coral-tint: #FFF6F3;     /* fond d'un choix sélectionné */
+  --error-bg: #FAECE7;       /* fond des messages d'erreur */
   --teal: #2F6E68;           /* confiance, rassurance, focus clavier */
   --teal-bg: #E7F1EF;
   --gold: #8C6A1D;

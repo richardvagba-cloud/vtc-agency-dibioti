@@ -3,10 +3,10 @@
   style.textContent = `
     .vtcs-wrap{max-width:720px;margin:16px auto 0;padding:0 24px;position:relative;}
     .vtcs-box{position:relative;}
-    .vtcs-input{width:100%;border:1px solid var(--line,#E4D9CC);background:var(--card,#fff);color:var(--ink,#241B2F);
+    .vtcs-input{box-sizing:border-box;width:100%;border:1px solid var(--line,#E4D9CC);background:var(--card,#fff);color:var(--ink,#241B2F);
       padding:12px 16px 12px 40px;border-radius:24px;font-family:'Inter',sans-serif;font-size:14px;}
     .vtcs-input:focus{outline:2px solid var(--coral,#E1543F);outline-offset:1px;}
-    .vtcs-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted,#7A6F84);font-size:15px;pointer-events:none;}
+    .vtcs-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted,#6E6379);font-size:15px;pointer-events:none;}
     .vtcs-results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card,#fff);
       border:1px solid var(--line,#E4D9CC);border-radius:14px;box-shadow:0 8px 24px rgba(36,27,47,0.12);
       max-height:360px;overflow-y:auto;z-index:200;display:none;}
@@ -15,8 +15,8 @@
     .vtcs-item:last-child{border-bottom:none;}
     .vtcs-item:hover, .vtcs-item.active{background:var(--teal-bg,#E7F1EF);}
     .vtcs-item .t{font-size:14px;font-weight:600;color:var(--ink,#241B2F);margin-bottom:2px;}
-    .vtcs-item .s{font-size:12px;color:var(--muted,#7A6F84);}
-    .vtcs-empty{padding:16px;font-size:13px;color:var(--muted,#7A6F84);text-align:center;}
+    .vtcs-item .s{font-size:12px;color:var(--muted,#6E6379);}
+    .vtcs-empty{padding:16px;font-size:13px;color:var(--muted,#6E6379);text-align:center;}
   `;
   document.head.appendChild(style);
 
