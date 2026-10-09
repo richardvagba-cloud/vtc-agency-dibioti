@@ -5,29 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <title>Connexion requise — VTC.AGENCY</title>
 <meta name="description" content="Cette page est réservée aux comptes VTC.AGENCY. Connectez-vous ou créez un compte pour y accéder.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://dibioti.com/connexion-requise.html">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FBF5EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
 <style>
-:root{
-  --paper:#FBF5EE; --ink:#241B2F; --coral:#E1543F; --coral-deep:#B93F2E; --coral-hover:#9C3527;
-  --gold:#8C6A1D; --teal:#2F6E68; --teal-bg:#E7F1EF; --muted:#6E6379; --line:#E4D9CC; --card:#FFFFFF;
-}
+
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;}
-nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
-.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
-.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
-.logo span{color:var(--coral);}
-.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
-.nav-links a{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
-.nav-links a:hover{color:var(--ink);background:var(--teal-bg);}
-.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;}
-.nav-cta:hover{background:var(--coral-hover);}
 .wrap{max-width:480px;margin:0 auto;padding:32px;text-align:center;}
 .lock{font-family:'Fraunces',serif;font-weight:700;font-size:44px;color:var(--coral-deep);margin-bottom:8px;}
 h1{font-family:'Fraunces',serif;font-weight:700;font-size:26px;margin-bottom:12px;}
@@ -40,23 +32,29 @@ p{color:var(--muted);font-size:15px;margin-bottom:28px;}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="/supabase-auth.js"></script>
 
-<nav>
+<nav aria-label="Navigation principale">
   <div class="nav-inner">
-    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
-    <ul class="nav-links">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
-      <li><a href="/agence.html#portail">Espace hôte</a></li>
-      <li><a href="/agence.html#reglement">Règlement</a></li>
-      <li><a href="/agence.html#contact">Contact</a></li>
-      <li><a href="/blog.html">Blog</a></li>
-    </ul>
-    <span id="nav-auth"></span>
+    <a class="logo" href="/" aria-label="Dibioti Academy par VTC.AGENCY, accueil">Dibioti Academy <span>&middot;</span> VTC.AGENCY</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <div class="nav-panel" id="nav-panel">
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+        <li><a href="/agence.html#portail">Espace hôte</a></li>
+        <li><a href="/agence.html#reglement">Règlement</a></li>
+        <li><a href="/agence.html#contact">Contact</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+      </ul>
+      <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+      <span id="nav-auth"></span>
+    </div>
   </div>
 </nav>
+<span id="contenu"></span>
 
 <div style="flex:1;display:flex;align-items:center;justify-content:center;">
 <div class="wrap">

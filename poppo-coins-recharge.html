@@ -6,45 +6,35 @@
 <meta name="format-detection" content="telephone=no">
 <title>Popo Coins — Recharge coins Popo Live</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#FBF5EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
 <style>
+  /* Palette : celle du site (voir site.css). Les noms ci-dessous sont ceux déjà utilisés par cette page. */
   :root {
-    --bg: #14110D;
-    --bg-alt: #1B1710;
-    --surface: #211B13;
-    --surface-2: #2A2216;
-    --hairline: #3D341F;
-    --gold: #D8AE55;
-    --gold-soft: #EACB8B;
-    --amber: #E0863E;
-    --amber-soft: #F2AD70;
-    --text: #F3ECDC;
-    --text-dim: #B9AC8E;
-    --emerald: #5A9A78;
-    --danger: #D9704F;
-    --shadow: rgba(0,0,0,0.45);
-    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #EFE7D3; --bg-alt: #E6DCC1; --surface: #F7F0DE; --surface-2: #EFE4C9;
-      --hairline: #CBBB92; --gold: #97702A; --gold-soft: #7C5A20; --amber: #B85F22;
-      --amber-soft: #9A4E1B; --text: #22190E; --text-dim: #5F5230; --shadow: rgba(0,0,0,0.1);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #14110D; --bg-alt: #1B1710; --surface: #211B13; --surface-2: #2A2216;
-    --hairline: #3D341F; --gold: #D8AE55; --gold-soft: #EACB8B; --amber: #E0863E;
-    --amber-soft: #F2AD70; --text: #F3ECDC; --text-dim: #B9AC8E; --shadow: rgba(0,0,0,0.45);
+    --bg: var(--paper);
+    --bg-alt: var(--paper-2);
+    --surface: var(--card);
+    --surface-2: var(--paper-2);
+    --hairline: var(--line);
+    --gold: var(--coral-deep);
+    --gold-soft: var(--coral-hover);
+    --amber: var(--teal);
+    --amber-soft: var(--teal);
+    --emerald: var(--teal);
+    --danger: var(--coral-deep);
+    --text: var(--ink);
+    --text-dim: var(--muted);
   }
 
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     background:
-      radial-gradient(circle at 50% -10%, rgba(216,174,85,0.14), transparent 55%),
+      radial-gradient(circle at 50% -10%, rgba(225,84,63,0.07), transparent 55%),
       var(--bg);
     color: var(--text);
     font-family: var(--font-body);
@@ -86,7 +76,7 @@
     border-radius: 14px; padding: 20px; margin-bottom: 30px;
     box-shadow: 0 12px 30px var(--shadow);
   }
-  .id-box .step { display: inline-block; background: var(--amber); color: #201A0D; font-weight: 700; font-size: 0.78rem; border-radius: 999px; padding: 3px 10px; margin-bottom: 10px; }
+  .id-box .step { display: inline-block; background: var(--amber); color: #fff; font-weight: 700; font-size: 0.78rem; border-radius: 999px; padding: 3px 10px; margin-bottom: 10px; }
   .id-box label { display: block; font-size: 0.95rem; color: var(--text); margin-bottom: 8px; font-weight: 600; }
   .id-box input, .id-box select {
     width: 100%; background: var(--bg-alt); border: 1px solid var(--hairline); color: var(--text);
@@ -122,7 +112,7 @@
 
   .order-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    background: var(--gold); color: #201A0D; font-weight: 600; font-size: 0.86rem;
+    background: var(--gold); color: #fff; font-weight: 600; font-size: 0.86rem;
     padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer;
     white-space: nowrap; transition: transform 0.15s ease, background 0.15s ease;
   }
@@ -140,7 +130,7 @@
   footer a:hover { text-decoration: underline; }
 
   .confirm-panel {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    display: none; position: fixed; inset: 0; background: rgba(36,27,47,0.55);
     align-items: center; justify-content: center; padding: 20px; z-index: 50;
   }
   .confirm-panel.show { display: flex; }
@@ -170,39 +160,32 @@
     .order-btn { width: 100%; padding: 12px 14px; margin-top: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { .order-btn { transition: none; } }
-  /* Menu du site (mêmes entrées que les autres pages, couleurs de cette page) */
-  nav { position: sticky; top: 0; z-index: 50; background: var(--bg-alt); border-bottom: 1px solid var(--hairline); }
-  .nav-inner { max-width: 1080px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; }
-  .logo { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.2px; margin-right: auto; color: var(--text); }
-  .logo span { color: var(--gold); }
-  .nav-links { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
-  .nav-links a { font-family: var(--font-body); font-size: 14px; color: var(--text-dim); padding: 8px 14px; border-radius: 20px; text-decoration: none; display: inline-block; transition: all .15s; }
-  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
-  .nav-cta { background: var(--gold); color: var(--bg); border: none; padding: 10px 20px; border-radius: 24px; font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
-  #nav-auth .nav-cta { background: none !important; color: var(--text) !important; border: 1px solid var(--hairline) !important; }
-  /* La fenêtre de connexion reste claire, comme sur le reste du site */
-  #sb-auth-modal { color: #241B2F; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="/supabase-auth.js"></script>
 
-<nav>
+<nav aria-label="Navigation principale">
   <div class="nav-inner">
-    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
-    <ul class="nav-links">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
-      <li><a href="/agence.html#portail">Espace hôte</a></li>
-      <li><a href="/agence.html#reglement">Règlement</a></li>
-      <li><a href="/agence.html#contact">Contact</a></li>
-      <li><a href="/blog.html">Blog</a></li>
-    </ul>
-    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
-    <span id="nav-auth"></span>
+    <a class="logo" href="/" aria-label="Dibioti Academy par VTC.AGENCY, accueil">Dibioti Academy <span>&middot;</span> VTC.AGENCY</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <div class="nav-panel" id="nav-panel">
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/agence.html#rejoindre">Rejoindre</a></li>
+        <li><a href="/agence.html#portail">Espace hôte</a></li>
+        <li><a href="/agence.html#reglement">Règlement</a></li>
+        <li><a href="/agence.html#contact">Contact</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+      </ul>
+      <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+      <span id="nav-auth"></span>
+    </div>
   </div>
 </nav>
+<span id="contenu"></span>
 
 <div class="wrap">
 

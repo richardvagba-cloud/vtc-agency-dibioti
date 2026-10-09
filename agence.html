@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <title>VTC.AGENCY — Agence officielle Poppo Live</title>
 <meta name="description" content="Agence officielle Poppo Live (ID 44904360). Transparence, accompagnement réel, croissance par niveaux.">
 <meta name="robots" content="index, follow">
@@ -22,20 +22,12 @@
 <meta name="twitter:title" content="VTC.AGENCY — Agence officielle Poppo Live">
 <meta name="twitter:description" content="Agence officielle Poppo Live (ID 44904360). Transparence, accompagnement réel, croissance par niveaux.">
 <meta name="twitter:image" content="https://dibioti.com/og-image.jpg">
+<meta name="theme-color" content="#FBF5EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
 <style>
-:root{
-  --paper:#FBF5EE;
-  --ink:#241B2F;
-  --plum-2:#3A2C46;
-  --coral:#E1543F;
-  --coral-deep:#B93F2E; --coral-hover:#9C3527;
-  --gold:#8C6A1D;
-  --teal:#2F6E68;
-  --teal-bg:#E7F1EF;
-  --muted:#6E6379;
-  --line:#E4D9CC;
-  --card:#FFFFFF;
-}
+
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
 h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.15;color:var(--ink);}
@@ -47,16 +39,6 @@ section{padding:88px 0;}
 .section-tight{padding:64px 0;}
 
 /* Nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
-.nav-inner{max-width:1080px;margin:0 auto;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 8px;}
-.logo{font-family:'Fraunces',serif;font-weight:700;font-size:19px;letter-spacing:-0.2px;margin-right:auto;}
-.logo span{color:var(--coral);}
-.nav-links{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
-.nav-links a,.nav-links button{background:none;border:none;font-family:'Inter';font-size:14px;color:var(--muted);padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-block;}
-.nav-links a:hover,.nav-links button:hover{color:var(--ink);background:var(--teal-bg);}
-.nav-links a.active,.nav-links button.active{color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--line);font-weight:500;}
-.nav-cta{background:var(--coral-deep);color:#fff;border:none;padding:10px 20px;border-radius:24px;font-family:'Inter';font-size:14px;font-weight:500;cursor:pointer;}
-.nav-cta:hover{background:var(--coral-hover);}
 
 /* Page toggle */
 .page{display:none;}
@@ -96,10 +78,10 @@ nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-
 .value-card p{font-size:14px;color:var(--muted);}
 
 /* Trust banner (anti-scam) */
-.trust-banner{background:var(--ink);color:#F0EAE0;border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;margin-top:56px;}
+.trust-banner{background:var(--ink);color:var(--on-dark);border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;margin-top:56px;}
 .trust-banner .badge{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;background:var(--coral-deep);color:#fff;padding:4px 10px;border-radius:4px;flex-shrink:0;margin-top:4px;}
 .trust-banner h3{color:#fff;font-size:19px;margin-bottom:8px;}
-.trust-banner p{font-size:14px;color:#C8BFCF;max-width:600px;}
+.trust-banner p{font-size:14px;color:var(--on-dark-muted);max-width:600px;}
 
 /* Levels strip */
 .levels{display:flex;gap:16px;margin-top:48px;}
@@ -140,8 +122,8 @@ nav{position:sticky;top:0;z-index:50;background:rgba(251,245,238,0.92);backdrop-
 .faq-item summary{cursor:pointer;font-size:14px;font-weight:500;list-style:none;}
 .faq-item summary::-webkit-details-marker{display:none;}
 .faq-item p{font-size:13px;color:var(--muted);margin-top:10px;}
-.contact-strip{background:var(--ink);color:#F0EAE0;border-radius:16px;padding:26px 28px;display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
-.contact-strip .id{font-family:'IBM Plex Mono',monospace;font-size:13px;color:#C8BFCF;}
+.contact-strip{background:var(--ink);color:var(--on-dark);border-radius:16px;padding:26px 28px;display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
+.contact-strip .id{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--on-dark-muted);}
 
 /* Footer */
 footer{border-top:1px solid var(--line);padding:48px 0;}
@@ -158,35 +140,39 @@ footer{border-top:1px solid var(--line);padding:48px 0;}
   .portal-grid{grid-template-columns:1fr;}
   .levels{flex-direction:column;}
   .hero h1{font-size:36px;}
-  .nav-links{display:none;}
   .trust-banner{flex-direction:column;}
 }
 .live-strip{display:block;background:var(--coral-deep);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:500;text-decoration:none;}
 .live-strip:hover{background:var(--coral-hover);}
-.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulseLive 1.4s infinite;}
+.live-strip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--card);margin-right:8px;animation:pulseLive 1.4s infinite;}
 @keyframes pulseLive{0%,100%{opacity:1;}50%{opacity:0.4;}}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="/supabase-auth.js"></script>
 
 
-<nav>
+<nav aria-label="Navigation principale">
   <div class="nav-inner">
-    <div class="logo">Dibioti Academy <span>&middot;</span> VTC.AGENCY</div>
-    <ul class="nav-links" id="navLinks">
-      <li><button data-page="accueil" class="active">Accueil</button></li>
-      <li><button data-page="rejoindre">Rejoindre</button></li>
-      <li><button data-page="portail">Espace hôte</button></li>
-      <li><button data-page="reglement">Règlement</button></li>
-      <li><button data-page="contact">Contact</button></li>
-      <li><a href="/blog.html">Blog</a></li>
-    </ul>
-    <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">Devenir hôte</a>
-  <span id="nav-auth"></span>
+    <a class="logo" href="/" aria-label="Dibioti Academy par VTC.AGENCY, accueil">Dibioti Academy <span>&middot;</span> VTC.AGENCY</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">Menu</span></button>
+    <div class="nav-panel" id="nav-panel">
+      <ul class="nav-links" id="navLinks">
+        <li><button data-page="accueil" class="active">Accueil</button></li>
+        <li><button data-page="rejoindre">Rejoindre</button></li>
+        <li><button data-page="portail">Espace hôte</button></li>
+        <li><button data-page="reglement">Règlement</button></li>
+        <li><button data-page="contact">Contact</button></li>
+        <li><a href="/blog.html">Blog</a></li>
+      </ul>
+      <a class="nav-cta" href="https://invite-poppo.com/H4rGAe" target="_blank" rel="noopener">Devenir hôte</a>
+      <span id="nav-auth"></span>
+    </div>
   </div>
 </nav>
+<span id="contenu"></span>
 
 <a class="live-strip" href="https://vp.poppolive.com/7N6Cf6" target="_blank" rel="noopener"><span class="dot"></span>Viens me rejoindre sur le live</a>
 <script defer src="/search-index.js"></script>
@@ -371,7 +357,7 @@ footer{border-top:1px solid var(--line);padding:48px 0;}
       <div class="badge" style="background:var(--gold);">Évolution</div>
       <div style="flex:1;">
         <h3>Envie de passer sous-agent ?</h3>
-        <p style="color:#E7F1EF;">Si vous êtes hôte actif et que vous souhaitez accompagner d'autres créateurs au sein de l'équipe, faites-le-nous savoir. Aucune condition cachée : on en discute directement avec vous.</p>
+        <p style="color:var(--teal-bg);">Si vous êtes hôte actif et que vous souhaitez accompagner d'autres créateurs au sein de l'équipe, faites-le-nous savoir. Aucune condition cachée : on en discute directement avec vous.</p>
       </div>
       <button class="btn-primary" style="background:var(--gold);flex-shrink:0;" onclick="goTo('contact')">Postuler</button>
     </div>
