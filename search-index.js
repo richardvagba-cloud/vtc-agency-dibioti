@@ -1,4 +1,7 @@
 window.VTC_SEARCH_INDEX = [
+  { title: "Devenir hôte sur Poppo Live : les étapes dans l'ordre", snippet: "Compte, vérification, agence, premier live de 30 minutes, sans promesse de gains.", url: "/devenir-hote-poppo-live.html" },
+  { title: "Vérification du visage : que faire si elle échoue", snippet: "Conseils généraux pour réussir la vérification par caméra et réflexes de sécurité.", url: "/verification-visage-poppo-live.html" },
+  { title: "Un faux agent me demande de l'argent : que faire ?", snippet: "Gestes immédiats, preuves à garder, signalement et vérification d'une agence.", url: "/faux-agent-demande-argent.html" },
   { title: "Accueil", snippet: "Deux espaces, deux publics : Dibioti Academy pour les débutants, VTC.AGENCY pour la vitrine agence.", url: "/" },
   { title: "Dibioti Academy — Pour les débutants", snippet: "Parcours guidé, lexique des termes, contact rapide pour lever les blocages du premier pas.", url: "/debutant.html" },
   { title: "Lexique — Points, Retrait, Agence, Sous-agent, Coins", snippet: "Définitions simples des termes utilisés sur Poppo Live et dans l'agence.", url: "/debutant.html" },
